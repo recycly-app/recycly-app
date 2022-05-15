@@ -6,7 +6,7 @@
       <div class="row no-wrap items-center">
         <div class="col text-h6 ellipsis" :title="titre">{{ titre }}</div>
       </div>
-      <div>
+      <div v-if="type == 'Reconditionnement'">
         <span class="q-mr-sm">État</span
         ><q-rating v-model="stars" :max="5" size="20px" />
       </div>
@@ -16,8 +16,8 @@
       <div class="text-caption text-grey q-ma-none">
         {{ category }}
       </div>
+      <div class="text-subtitle1 text-grey">{{ type }}</div>
       <div class="text-subtitle2 text-blue-5">{{ categorie }}</div>
-      <div class="text-subtitle1">{{ type }}</div>
       <div class="text-caption text-grey">
         {{ description }}
       </div>
@@ -47,11 +47,17 @@ export default {
   name: "MesAnnonces",
   methods: {
     deleteAnnonce() {
-      axios.delete().then().catch();
+      axios
+        .delete(apiUrl + "/annonce/" + this.type + "/delete/" + this.id)
+        .then((res) => {
+          console.log("supprimé");
+        })
+        .catch();
     },
   },
 
   props: {
+    id: Number,
     titre: String,
     type: String,
     description: String,

@@ -1,15 +1,33 @@
 <template>
   <div class="q-pa-md full-width">
-    <div class="text-h5 q-mb-sm">Mes annonces :</div>
-    <div class="row q-gutter-md">
-      <MesAnnonces
-        v-for="(annonce, index) in annonces"
-        :key="index"
-        :type="annonce.type"
-        :titre="annonce.titre"
-        :description="annonce.description"
-        :categorie="annonce.categorie"
-      />
+    <div>
+      <div class="text-h5 q-mb-sm">Mes annonces Recyclage:</div>
+      <div class="row q-gutter-md">
+        <MesAnnonces
+          v-for="(annonce, index) in annoncesRecy"
+          :id="annonce.id_annonce_recy"
+          :key="index"
+          type="Recyclage"
+          :titre="annonce.titre"
+          :description="annonce.description"
+          :categorie="annonce.categorie"
+        />
+      </div>
+    </div>
+    <q-separator class="q-my-md" />
+    <div>
+      <div class="text-h5 q-mb-sm">Mes annonces Reconditionnement:</div>
+      <div class="row q-gutter-md">
+        <MesAnnonces
+          v-for="(annonce, index) in annoncesRecondi"
+          :id="annonce.id_annonce_recondition"
+          :key="index"
+          type="Reconditionnement"
+          :titre="annonce.titre"
+          :description="annonce.description"
+          :categorie="annonce.categorie"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -24,14 +42,23 @@ export default {
   components: { MesAnnonces },
   data() {
     return {
-      annonces: null,
+      annoncesRecy: null,
+      annoncesRecondi: null,
     };
   },
   mounted() {
     axios
-      .get(apiUrl + "/user/getUserAnnonces/86")
+      .get(apiUrl + "/annonce/Recyclage/getUserAnnonces/" + store.id_user)
       .then((res) => {
-        this.annonces = res.data.annonce;
+        this.annoncesRecy = res.data.annonce;
+      })
+      .catch((err) => console.log(err));
+    axios
+      .get(
+        apiUrl + "/annonce/Reconditionnement/getUserAnnonces/" + store.id_user
+      )
+      .then((res) => {
+        this.annoncesRecondi = res.data.annonce;
       })
       .catch((err) => console.log(err));
   },
