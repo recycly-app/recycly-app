@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-item clickable tag="a" :href="link">
+    <q-item clickable tag="a" :to="link">
       <q-item-section v-if="icon" avatar>
         <q-icon :name="icon" />
       </q-item-section>
@@ -13,9 +13,8 @@
   </div>
 </template>
 
-<scripts>
+<script>
 import { defineComponent } from "vue";
-
 export default defineComponent({
   name: "ItemMenu",
   props: {
@@ -26,7 +25,6 @@ export default defineComponent({
 
     link: {
       type: String,
-      default: "#",
     },
 
     icon: {
@@ -42,6 +40,6 @@ export default defineComponent({
       type: Number,
     },
   },
-  // setup() {},
+  setup() {},
 });
-</scripts>
+</script>

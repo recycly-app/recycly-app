@@ -19,6 +19,14 @@
               color="grey-6"
             />
           </router-link>
+          <router-link to="/mes-annonces" class="item-menu">
+            <SimpleButton
+              label="Mes messages"
+              icon="message"
+              size="1.5em"
+              color="grey-6"
+            />
+          </router-link>
         </div>
         <q-separator vertical inset class="q-mx-lg" />
         <div class="column items-center">
@@ -45,19 +53,19 @@
 </template>
 
 <script>
-import SimpleButton from '../button/SimpleButton.vue';
-import { store } from 'src/layouts/MainLayout.vue';
+import SimpleButton from "../button/SimpleButton.vue";
+import { store } from "src/layouts/MainLayout.vue";
 
 export default {
-  name: 'ButtonUserLogged',
+  name: "ButtonUserLogged",
   components: {
     SimpleButton,
   },
   methods: {
     logout() {
-      localStorage.removeItem('id_user');
-      localStorage.removeItem('token_user');
-      location.replace('/');
+      localStorage.removeItem("id_user");
+      localStorage.removeItem("token_user");
+      location.replace("/");
     },
   },
   data() {

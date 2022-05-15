@@ -1,5 +1,5 @@
 <template>
-  <q-btn :color="color" class="q-my-xs">
+  <q-btn :color="color" class="q-my-xs full-width">
     <div>{{ label }}</div>
     <q-icon right :size="size" :name="icon" />
   </q-btn>
@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'SimpleButton',
+  name: "SimpleButton",
   props: {
     label: String,
     icon: String,

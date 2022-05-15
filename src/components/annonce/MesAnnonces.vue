@@ -50,9 +50,12 @@ export default {
       axios
         .delete(apiUrl + "/annonce/" + this.type + "/delete/" + this.id)
         .then((res) => {
-          console.log("supprimé");
+          // location.replace("#/mes-annonces");
+          location.reload();
         })
-        .catch();
+        .catch((err) => {
+          console.log("Erreur supprimer annonce" + err);
+        });
     },
   },
 

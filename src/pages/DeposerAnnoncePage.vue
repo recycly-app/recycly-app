@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import FormAnnonce from 'src/components/annonce/FormAnnonce.vue';
-import DeposerNotLogged from 'src/components/annonce/DeposerNotLogged.vue';
-import { store } from 'src/layouts/MainLayout.vue';
+import FormAnnonce from "src/components/annonce/FormAnnonce.vue";
+import DeposerNotLogged from "src/components/annonce/DeposerNotLogged.vue";
+import { store } from "src/layouts/MainLayout.vue";
 
 export default {
-  name: 'DeposerAnnoncePage',
+  name: "DeposerAnnoncePage",
   components: { FormAnnonce, DeposerNotLogged },
   data() {
     return {
@@ -29,5 +29,11 @@ export default {
   border-radius: 10px;
   margin: 10px auto auto;
   padding: 10px;
+}
+
+@media screen and (max-width: 425px) {
+  .deposer-annonce {
+    width: 95%;
+  }
 }
 </style>

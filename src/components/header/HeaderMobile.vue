@@ -35,76 +35,77 @@
 </template>
 
 <script>
-import InfoUser from 'src/components/menu/InfoUser.vue';
-import ItemMenu from 'src/components/menu/ItemMenu.vue';
-import ButtonUser from './ButtonUser.vue';
-import { store } from 'src/layouts/MainLayout.vue';
-import { ref } from 'vue';
+import InfoUser from "src/components/menu/InfoUser.vue";
+import ItemMenu from "src/components/menu/ItemMenu.vue";
+import ButtonUser from "./ButtonUser.vue";
+import { store } from "src/layouts/MainLayout.vue";
+import { ref } from "vue";
+
 const linksList = [
   {
-    title: 'Accueil',
-    icon: 'home',
-    link: '#/',
+    title: "Accueil",
+    icon: "home",
+    link: "/",
     separator: true,
   },
   {
-    title: 'Recyclage',
-    icon: 'recycling',
-    link: '#/recyclage',
+    title: "Recyclage",
+    icon: "recycling",
+    link: "/recyclage",
     separator: false,
   },
   {
-    title: 'Reconditionnement ',
-    icon: 'construction',
-    link: '#/reconditionnement',
+    title: "Reconditionnement ",
+    icon: "construction",
+    link: "/reconditionnement",
     separator: false,
   },
   {
-    title: 'Déposer annonce ',
-    icon: 'campaign',
-    link: '#/deposer-annonce',
+    title: "Déposer annonce",
+    icon: "campaign",
+    link: "/deposer-annonce",
     separator: true,
   },
   {
-    title: 'Se connecter',
-    caption: 'Community Quasar projects',
-    icon: 'fa-solid fa-arrow-right-to-bracket',
-    link: '#/connexion',
+    title: "Se connecter",
+    caption: "Community Quasar projects",
+    icon: "fa-solid fa-arrow-right-to-bracket",
+    link: "/connexion",
     separator: false,
   },
   {
     title: "S'inscrire",
-    icon: 'fa-solid fa-user-plus',
-    link: '#/inscription',
+    icon: "fa-solid fa-user-plus",
+    link: "/inscription",
     separator: true,
   },
   {
-    title: 'Twitter',
-    icon: 'fa-brands fa-twitter',
-    link: 'https://twitter.quasar.dev',
+    title: "Twitter",
+    icon: "fa-brands fa-twitter",
+    link: "https://twitter.quasar.dev",
     separator: false,
   },
   {
-    title: 'Facebook',
-    icon: 'fa-brands fa-facebook',
-    link: 'https://facebook.quasar.dev',
+    title: "Facebook",
+    icon: "fa-brands fa-facebook",
+    link: "https://facebook.quasar.dev",
     separator: false,
   },
   {
-    title: 'Contact',
-    icon: 'record_voice_over',
-    link: '/contact',
+    title: "Contact",
+    icon: "record_voice_over",
+    link: "/contact",
     separator: false,
   },
   {
-    title: 'Map',
-    icon: 'record_voice_over',
-    link: '#/map',
+    title: "Map",
+    icon: "record_voice_over",
+    link: "/map",
     separator: false,
   },
 ];
 export default {
-  name: 'HeaderMobile',
+  name: "HeaderMobile",
   components: { InfoUser, ItemMenu, ButtonUser },
   setup() {
     const leftDrawerOpen = ref(false);

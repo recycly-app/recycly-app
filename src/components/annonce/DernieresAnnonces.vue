@@ -1,6 +1,6 @@
 <template>
-  <div class="q-pa-md full-width">
-    <h5 class="q-ma-sm">Les dernières annonces : {{ this.type }}</h5>
+  <div class="full-width">
+    <div class="q-ma-sm text-h6">Les dernières annonces : {{ this.type }}</div>
 
     <div class="row q-gutter-xs justify-center">
       <AnnonceCard
@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import AnnonceCard from './AnnonceCard.vue';
-import axios from 'axios';
-import { apiUrl } from '../../constants/constants';
+import AnnonceCard from "./AnnonceCard.vue";
+import axios from "axios";
+import { apiUrl } from "../../constants/constants";
 
 export default {
-  name: 'DernieresAnnonces',
+  name: "DernieresAnnonces",
   props: {
     type: String,
   },
@@ -36,7 +36,7 @@ export default {
   },
   mounted() {
     axios
-      .get(apiUrl + '/annonce/' + this.type + '/getRecent')
+      .get(apiUrl + "/annonce/" + this.type + "/getRecent")
       .then((res) => {
         this.annonces = res.data.annonce;
       })

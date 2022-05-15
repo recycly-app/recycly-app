@@ -75,6 +75,7 @@
         lazy-rules
         color="light-green-8"
         standout="bg-light-green-3 text-light-green-7"
+        class="q-mt-md"
       />
       <q-toggle
         v-model="accept"
@@ -97,12 +98,12 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { ref } from 'vue';
-import { apiUrl } from '../../constants/constants';
+import axios from "axios";
+import { ref } from "vue";
+import { apiUrl } from "../../constants/constants";
 
 export default {
-  name: 'FormulaireInscription',
+  name: "FormulaireInscription",
   props: { typeUser: String },
   setup(props) {
     const nom = ref(null);
@@ -124,11 +125,11 @@ export default {
 
       onSubmit() {
         if (accept.value !== true) {
-          console.log('veuillez accepter');
+          console.log("veuillez accepter");
           //
         } else {
           axios
-            .post(apiUrl + '/inscription', {
+            .post(apiUrl + "/inscription", {
               nom: nom.value,
               prenom: prenom.value,
               email: email.value,

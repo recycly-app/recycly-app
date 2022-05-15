@@ -2,6 +2,7 @@
   <div class="column items-center">
     <FiltreRecherche />
     <DernieresAnnonces type="Reconditionnement" />
+    <DernieresAnnonces type="Recyclage" />
   </div>
 </template>
 

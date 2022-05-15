@@ -1,6 +1,8 @@
 <template>
   <div class="connexion">
-    <h5 class="inscription-titre text-center">Créez un compte Recycly</h5>
+    <div class="inscription-titre text-center text-h5">
+      Créez un compte Recycly
+    </div>
     <div class="column items-center">
       <div class="q-pb-sm">
         <q-radio

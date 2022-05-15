@@ -22,20 +22,26 @@
       class="col"
     />
 
-    <q-btn rounded color="secondary" size="md" label="Filtrer" />
+    <q-btn
+      rounded
+      color="secondary"
+      size="md"
+      label="Rechercher"
+      class="btn-filtre"
+    />
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref } from "vue";
 // constants
-import { wilaya } from 'src/constants/constants';
-import { categorieOptionRecondi } from 'src/constants/categorie';
+import { wilaya } from "src/constants/constants";
+import { categorieOptionRecondi } from "src/constants/categorie";
 
-import SelectInput from './inputs/SelectInput.vue';
+import SelectInput from "./inputs/SelectInput.vue";
 
 export default {
-  name: 'FiltreRecherche',
+  name: "FiltreRecherche",
   components: { SelectInput },
   setup() {
     let wilayaName = [];
@@ -49,8 +55,8 @@ export default {
       wilaya: ref(null),
       type: ref(null),
       categorie: ref(null),
-      options: ['Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'],
-      typeOptions: ['Recyclage', 'Reconditionnement'],
+      options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
+      typeOptions: ["Recyclage", "Reconditionnement"],
     };
   },
 };
@@ -59,11 +65,12 @@ export default {
 <style>
 .filtre {
   padding: 10px 10px;
-  padding-bottom: 20px;
-  margin-top: 10px;
-  border: 1px solid gray;
-  border-radius: 10px;
+  margin-top: 1px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.btn-filtre {
+  bottom: 10px;
 }
 </style>

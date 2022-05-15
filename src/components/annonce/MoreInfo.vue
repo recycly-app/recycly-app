@@ -1,6 +1,7 @@
 <template>
   <q-card class="dialog-annonce">
     <q-card-section>
+      <div class="text-h6">{{ annonceur }}</div>
       <div class="text-h6">{{ titre }}</div>
       <div class="text-h7">{{ type }}</div>
     </q-card-section>
@@ -24,8 +25,9 @@
 
 <script>
 export default {
-  name: 'MoreInfo',
+  name: "MoreInfo",
   props: {
+    annonceur: String,
     titre: String,
     type: String,
     description: String,
