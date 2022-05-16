@@ -10,6 +10,7 @@
         :type="this.type"
         :categorie="annonce.categorie"
         :description="annonce.description"
+        :image="annonce.photo_annonce"
       />
     </div>
   </div>

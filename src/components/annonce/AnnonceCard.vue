@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-card class="my-card" @click="showMoreInfo">
-      <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
+      <q-img :src="`${apiUrl}/images/${image}`" />
 
       <q-card-section>
         <q-btn
@@ -54,6 +54,7 @@
 <script>
 import { ref } from "vue";
 import MoreInfo from "./MoreInfo.vue";
+import { apiUrl } from "src/constants/constants";
 export default {
   name: "AnnonceCard",
 
@@ -62,12 +63,14 @@ export default {
     type: String,
     description: String,
     categorie: String,
+    image: String,
   },
   components: {
     MoreInfo,
   },
   setup() {
     return {
+      apiUrl,
       etat: ref(4),
       fixed: ref(false),
     };
