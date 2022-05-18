@@ -1,9 +1,9 @@
 <template>
   <div>
-    <q-card class="my-card" @click="showMoreInfo">
-      <q-img :src="`${apiUrl}/images/${image}`" />
+    <q-card class="my-card">
+      <q-img :src="`${apiUrl}/images/${image}`" style="height: 225px" />
 
-      <q-card-section>
+      <q-card-section class="q-pb-none">
         <q-btn
           fab
           color="secondary"
@@ -13,7 +13,9 @@
         />
 
         <div class="row no-wrap items-center">
-          <div class="col text-h6 ellipsis" :title="titre">{{ titre }}</div>
+          <div class="col text-h6 ellipsis" :title="titre">
+            {{ titre }}
+          </div>
           <div
             class="col-auto text-grey text-caption q-pt-md row no-wrap items-center"
           >
@@ -21,32 +23,29 @@
             250 ft
           </div>
         </div>
-        <div v-if="this.type == 'Reconditionnement'">
-          <span>État</span><q-rating v-model="etat" :max="5" size="20px" />
-        </div>
       </q-card-section>
 
       <q-card-section class="q-pt-none">
         <div class="text-subtitle1">{{ type }}</div>
-        <div class="text-subtitle2 text-blue-5">{{ categorie }}</div>
-        <div class="text-caption text-grey-7">
-          {{ description }}
-        </div>
+        <div class="text-subtitle2 text-blue-5">{{ prix }} DA</div>
       </q-card-section>
 
-      <q-separator />
-
-      <q-card-actions>
+      <q-card-actions class="q-py-none">
         <q-btn flat color="" icon="chat" />
         <q-btn flat color="secondary"> Réserver </q-btn>
-        <q-btn flat label="Voir plus" size="12px" @click="fixed = true" />
+        <q-btn flat label="Voir plus" size="12px" @click="showDialog()" />
       </q-card-actions>
     </q-card>
-
     <!-- ------------------------------------------Dialogue --------------------------------------------->
-
     <q-dialog v-model="fixed">
-      <MoreInfo :titre="titre" :type="type" :description="description"
+      <MoreInfo
+        :id="id"
+        :titre="titre"
+        :type="type"
+        :description="description"
+        :image="image"
+        :annonce="annonce"
+        v-bind:annonceur="annonceur"
     /></q-dialog>
   </div>
 </template>
@@ -55,24 +54,39 @@
 import { ref } from "vue";
 import MoreInfo from "./MoreInfo.vue";
 import { apiUrl } from "src/constants/constants";
+import axios from "axios";
 export default {
   name: "AnnonceCard",
 
   props: {
+    id: Number,
     titre: String,
     type: String,
     description: String,
-    categorie: String,
+    prix: String,
     image: String,
+    annonce: Object,
   },
   components: {
     MoreInfo,
   },
-  setup() {
+  setup(props) {
+    let fixed = ref(false);
+    let annonceur = ref({});
+
     return {
+      annonceur,
       apiUrl,
-      etat: ref(4),
-      fixed: ref(false),
+      fixed,
+      async showDialog() {
+        fixed.value = true;
+        await axios
+          .get(apiUrl + "/user/getUser/" + props.annonce.id_annonceur)
+          .then((res) => {
+            annonceur.value = res.data.user[0];
+          })
+          .catch((err) => console.log("erreur annonce" + err));
+      },
     };
   },
 };
@@ -82,6 +96,7 @@ export default {
 .my-card {
   width: 100%;
   max-width: 300px;
+  height: 400px;
   min-width: 300px;
   margin: 10px;
 }

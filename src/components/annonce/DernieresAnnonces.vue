@@ -4,13 +4,19 @@
 
     <div class="row q-gutter-xs justify-center">
       <AnnonceCard
-        v-for="annonce in annonces"
-        :key="annonce.id_annonce_recondition"
+        v-for="(annonce, index) in annonces"
+        :key="index + annonce.titre"
+        :id="
+          annonce.id_annonce_recy
+            ? annonce.id_annonce_recy
+            : annonce.id_annonce_recondition
+        "
         :titre="annonce.titre"
         :type="this.type"
-        :categorie="annonce.categorie"
+        :prix="annonce.prix"
         :description="annonce.description"
         :image="annonce.photo_annonce"
+        :annonce="annonce"
       />
     </div>
   </div>

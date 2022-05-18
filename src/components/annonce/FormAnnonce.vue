@@ -26,13 +26,13 @@
         <TextInput type="text" icon="title" label="Titre" v-model="titre" />
       </div>
       <div>
-        <!-- <SelectInput
+        <SelectInput
           :options="etatOptions"
           icon="beenhere"
           label="Etat"
           v-show="type == 'Reconditionnement'"
           @send-value="setEtat"
-        /> -->
+        />
         <TextInput
           type="number"
           suffix="DA"
@@ -95,7 +95,7 @@ export default {
     const description = ref(null);
     const prix = ref(null);
     const categorie = ref(null);
-    // const etat = ref(null);
+    const etat = ref(null);
     const lieu = ref(null);
     const $q = useQuasar();
     const image = ref(null);
@@ -106,17 +106,15 @@ export default {
       categorieOptionRecondi,
       categorieOptionRecyclage,
       lieu,
-      // etat,
+      etat,
       prix,
       description,
       typeOptions: ["Recyclage", "Reconditionnement"],
-      // etatOptions: {1:"", 2:, 3:, 4:, 5:},
+      etatOptions: ["bon", "mauvais"],
       image,
       alert,
 
       onSubmit() {
-        // console.log(image.value);
-
         let formData = new FormData();
 
         formData.append("image", image.value);
@@ -125,6 +123,7 @@ export default {
         formData.append("date", new Date());
         formData.append("idAnnonceur", store.id_user);
         formData.append("prix", prix.value);
+        formData.append("etat", etat.value);
         formData.append("categorie", categorie.value);
         formData.append("lieuRecuperation", lieu.value);
 
@@ -134,58 +133,18 @@ export default {
           data: formData,
         })
           .then((res) => {
-            // pour afficher la dialog
-
+            // afficher la dialog
             $q.dialog({
               title: "Annonce publié avec succès",
               message: "Consultez vos annonces dans la section Mes annonces",
             })
-              .onOk(() => {
-                // console.log('OK')
-              })
-              .onCancel(() => {
-                // console.log('Cancel')
-              })
-              .onDismiss(() => {
-                // console.log('I am triggered on both OK and Cancel')
-              });
+              .onOk(() => {})
+              .onCancel(() => {})
+              .onDismiss(() => {});
           })
           .catch((err) => {
             console.log("erreur ajout annonces" + err);
           });
-
-        // axios
-        //   .post(apiUrl + "/annonce/" + type.value + "/create", {
-        //     titre: titre.value,
-        //     description: description.value,
-        //     date: new Date(),
-        //     idAnnonceur: store.id_user,
-        //     prix: prix.value,
-        //     categorie: categorie.value,
-        //     // etat: etat.value,
-        //     image: ,
-        //     lieuRecuperation: lieu.value,
-        //   })
-        //   .then((res) => {
-        //     // pour afficher la dialog
-
-        //     $q.dialog({
-        //       title: "Annonce publié avec succès",
-        //       message: "Consultez vos annonces dans la section Mes annonces",
-        //     })
-        //       .onOk(() => {
-        //         // console.log('OK')
-        //       })
-        //       .onCancel(() => {
-        //         // console.log('Cancel')
-        //       })
-        //       .onDismiss(() => {
-        //         // console.log('I am triggered on both OK and Cancel')
-        //       });
-        //   })
-        //   .catch((err) => {
-        //     console.log("erreur ajout annonces" + err);
-        //   });
       },
     };
   },

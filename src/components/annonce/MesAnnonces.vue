@@ -1,6 +1,6 @@
 <template>
   <q-card class="my-card">
-    <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
+    <q-img :src="`${apiUrl}/images/${image}`" />
 
     <q-card-section>
       <div class="row no-wrap items-center">
@@ -65,6 +65,7 @@ export default {
     type: String,
     description: String,
     categorie: String,
+    image: String,
   },
   setup() {
     return {
