@@ -31,13 +31,16 @@
       <q-card-section class="q-py-xs">
         <div class="text-h5">{{ annonce.titre }}</div>
         <div class="text-h7">{{ type }}</div>
+        <div class="text-subtitle2 text-blue-5">{{ annonce.prix }} DA</div>
       </q-card-section>
       <q-separator />
+
       <q-card-section class="scroll q-pa-lg">
         <p>
           {{ annonce.description }}
         </p>
       </q-card-section>
+
       <q-separator />
     </div>
     <q-separator />
