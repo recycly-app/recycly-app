@@ -40,7 +40,8 @@
           label="Prix"
           v-model="prix"
         />
-        <TextInput type="text" icon="place" label="Lieu" v-model="lieu" />
+        <LocalisationButtun @send-coords="setCoords" />
+        {{ lieu }}
       </div>
     </div>
     <div>
@@ -73,11 +74,16 @@ import { categorieOptionRecyclage } from "src/constants/categorie";
 import { store } from "src/layouts/MainLayout.vue";
 import { apiUrl } from "src/constants/constants";
 import { useQuasar } from "quasar";
-
+import LocalisationButtun from "../map/LocalisationButtun.vue";
 export default {
   name: "FormAnnonce",
   props: { isLogged: Boolean },
-  components: { SelectInput, TextInput },
+  components: {
+    SelectInput,
+    TextInput,
+    LocalisationButtun,
+    LocalisationButtun,
+  },
   methods: {
     setType(payload) {
       this.type = payload.val;
@@ -87,6 +93,10 @@ export default {
     },
     setEtat(payload) {
       this.etat = payload.val;
+    },
+    setCoords(payload) {
+      this.lieu =
+        '{"lat":' + payload.coords.lat + ',"lng":' + payload.coords.lng + "}";
     },
   },
   setup() {

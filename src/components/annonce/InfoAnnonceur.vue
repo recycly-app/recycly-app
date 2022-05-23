@@ -10,6 +10,7 @@
       <q-item-section>
         <q-item-label>{{ annonceur.nom }} {{ annonceur.prenom }}</q-item-label>
         <q-item-label caption>{{ annonceur.type_user }}</q-item-label>
+        <q-item-label caption>{{ date }}</q-item-label>
       </q-item-section>
     </q-item>
   </q-card-section>
@@ -20,6 +21,7 @@ export default {
   name: "InfoAnnonceur",
   props: {
     annonceur: Object,
+    date: String,
   },
 };
 </script>

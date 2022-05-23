@@ -3,9 +3,9 @@
 </template>
 
 <script>
-import MapGps from 'src/components/map/MapGps.vue';
+import MapGps from "src/components/map/LocalisationButtun.vue";
 export default {
-  name: 'TestMap',
+  name: "TestMap",
   components: {
     MapGps,
   },
