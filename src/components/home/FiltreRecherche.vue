@@ -38,7 +38,7 @@ import { ref } from "vue";
 import { wilaya } from "src/constants/constants";
 import { categorieOptionRecondi } from "src/constants/categorie";
 
-import SelectInput from "./inputs/SelectInput.vue";
+import SelectInput from "../inputs/SelectInput.vue";
 
 export default {
   name: "FiltreRecherche",

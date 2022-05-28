@@ -10,6 +10,7 @@
           icon="place"
           class="absolute"
           style="top: 0; right: 12px; transform: translateY(-50%)"
+          @click="showDialogMap()"
         />
 
         <div class="row no-wrap items-center">
@@ -33,11 +34,16 @@
       <q-card-actions class="q-py-none">
         <q-btn flat color="" icon="chat" />
         <q-btn flat color="secondary"> Réserver </q-btn>
-        <q-btn flat label="Voir plus" size="12px" @click="showDialog()" />
+        <q-btn
+          flat
+          label="Voir plus"
+          size="12px"
+          @click="showDialogMoreInfo()"
+        />
       </q-card-actions>
     </q-card>
-    <!-- ------------------------------------------Dialogue --------------------------------------------->
-    <q-dialog v-model="fixed">
+    <!-- ------------------------------------------Dialogue More Info --------------------------------------------->
+    <q-dialog v-model="showMoreInfo">
       <MoreInfo
         :id="id"
         :titre="titre"
@@ -47,12 +53,18 @@
         :annonce="annonce"
         v-bind:annonceur="annonceur"
     /></q-dialog>
+
+    <!-- ------------------------------------------Dialogue Map --------------------------------------------->
+    <q-dialog v-model="showMap">
+      <MapLocalisation :coords="annonce.lieu_recuperation"
+    /></q-dialog>
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
 import MoreInfo from "./MoreInfo.vue";
+import MapLocalisation from "../map/MapLocalisation.vue";
 import { apiUrl } from "src/constants/constants";
 import axios from "axios";
 export default {
@@ -69,17 +81,23 @@ export default {
   },
   components: {
     MoreInfo,
+    MapLocalisation,
   },
   setup(props) {
-    let fixed = ref(false);
+    let showMoreInfo = ref(false);
+    let showMap = ref(false);
     let annonceur = ref({});
 
     return {
       annonceur,
       apiUrl,
-      fixed,
-      async showDialog() {
-        fixed.value = true;
+      showMoreInfo,
+      showMap,
+      showDialogMap() {
+        showMap.value = true;
+      },
+      async showDialogMoreInfo() {
+        showMoreInfo.value = true;
         await axios
           .get(apiUrl + "/user/getUser/" + props.annonce.id_annonceur)
           .then((res) => {

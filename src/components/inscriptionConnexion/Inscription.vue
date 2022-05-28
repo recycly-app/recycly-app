@@ -19,13 +19,13 @@
           label="Transporteur"
           color="blue"
         />
-        <q-radio
+        <!-- <q-radio
           keep-color
           v-model="typeUser"
           val="entreprise"
           label="Entreprise de recyclage/reconditionement"
           color="green"
-        />
+        /> -->
       </div>
       <FormInscription :typeUser="typeUser" />
 
