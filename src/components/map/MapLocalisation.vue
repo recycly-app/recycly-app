@@ -1,15 +1,6 @@
 <template>
-  <!-- <div> -->
   <q-card id="mapContainer" class="basemap"></q-card>
-  <!-- <GoogleMap
-      api-key="AIzaSyC3gTQjtr5WoyOp41dhvzaXZDhXsXTXOjY"
-      style="width: 100%; height: 500px"
-      :center="center"
-      :zoom="15"
-    >
-      <Marker :options="{ position: center }" />
-    </GoogleMap> -->
-  <!-- </div> -->
+  <div id="instructions" class=""></div>
 </template>
 
 <script>
@@ -85,7 +76,19 @@ export default {
             },
           });
         }
+
         // add turn instructions here at the end
+        // get the sidebar and add the instructions
+        const instructions = document.getElementById("instructions");
+        const steps = data.legs[0].steps;
+
+        let tripInstructions = "";
+        for (const step of steps) {
+          tripInstructions += `<li>${step.maneuver.instruction}</li>`;
+        }
+        instructions.innerHTML = `<p><strong>Durée du trajet: ${Math.floor(
+          data.duration / 60
+        )} min 🚗 </strong></p><ol>${tripInstructions}</ol>`;
       }
 
       map.on("load", () => {
@@ -133,5 +136,16 @@ export default {
 canvas {
   width: 100% !important;
   height: 100% !important;
+}
+#instructions {
+  position: absolute;
+  width: 25%;
+  margin: 25px;
+  top: 0;
+  right: 0;
+  padding: 20px;
+  background-color: #fff;
+  overflow-y: scroll;
+  font-family: sans-serif;
 }
 </style>

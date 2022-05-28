@@ -40,8 +40,8 @@
           label="Prix"
           v-model="prix"
         />
+
         <LocalisationButtun @send-coords="setCoords" />
-        {{ lieu }}
       </div>
     </div>
     <div>
@@ -109,6 +109,7 @@ export default {
     const lieu = ref(null);
     const $q = useQuasar();
     const image = ref(null);
+
     return {
       type,
       titre,
