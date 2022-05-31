@@ -7,6 +7,7 @@
       v-model="value"
       :options="options"
       :label="label"
+      :display-value="defaultValue"
       @blur="sendValue()"
     >
       <template v-slot:prepend>
@@ -17,18 +18,19 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref } from "vue";
 
 export default {
-  name: 'SelectInput',
+  name: "SelectInput",
   props: {
-    options: [],
+    options: Array,
     icon: String,
     label: String,
+    defaultValue: String,
   },
   methods: {
     sendValue() {
-      this.$emit('send-value', { val: this.value });
+      this.$emit("send-value", { val: this.value });
     },
   },
   setup() {

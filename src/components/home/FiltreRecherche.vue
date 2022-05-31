@@ -6,6 +6,7 @@
       :options="wilayaName"
       v-model="wilaya"
       class="col"
+      @send-value="setWilaya"
     />
     <SelectInput
       icon="list"
@@ -13,6 +14,8 @@
       :options="typeOptions"
       v-model="type"
       class="col"
+      @send-value="setType"
+      defaultValue="Reconditionnement"
     />
     <SelectInput
       icon="list"
@@ -20,6 +23,17 @@
       :options="categorieOptionRecondi"
       v-model="categorie"
       class="col"
+      @send-value="setCategorie"
+      v-if="type == 'Reconditionnement'"
+    />
+    <SelectInput
+      icon="list"
+      label="Catégorie"
+      :options="categorieOptionRecyclage"
+      v-model="categorie"
+      class="col"
+      @send-value="setCategorie"
+      v-else
     />
 
     <q-btn
@@ -28,6 +42,7 @@
       size="md"
       label="Rechercher"
       class="btn-filtre"
+      @click="sendValue"
     />
   </div>
 </template>
@@ -46,19 +61,39 @@ import SelectInput from "../inputs/SelectInput.vue";
 export default {
   name: "FiltreRecherche",
   components: { SelectInput },
+  methods: {
+    setWilaya(payload) {
+      this.wilaya = payload.val;
+    },
+    setType(payload) {
+      this.type = payload.val;
+    },
+    setCategorie(payload) {
+      this.categorie = payload.val;
+    },
+    sendValue() {
+      this.$emit("send-value", {
+        wilaya: this.wilaya,
+        type: this.type,
+        categorie: this.categorie,
+      });
+    },
+  },
   setup() {
     let wilayaName = [];
     wilayaOption.map((item) => {
       wilayaName.push(item.name);
     });
-
+    const wilaya = ref("null");
+    const type = ref("Reconditionnement");
+    const categorie = ref("null");
     return {
       wilayaName,
       categorieOptionRecondi,
       categorieOptionRecyclage,
-      wilaya: ref(null),
-      type: ref(null),
-      categorie: ref(null),
+      wilaya,
+      type,
+      categorie,
       typeOptions: ["Recyclage", "Reconditionnement"],
     };
   },

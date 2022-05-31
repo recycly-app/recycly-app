@@ -75,7 +75,7 @@ export default {
     titre: String,
     type: String,
     description: String,
-    prix: String,
+    prix: Number,
     image: String,
     annonce: Object,
   },
