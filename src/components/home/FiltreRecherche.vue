@@ -35,8 +35,11 @@
 <script>
 import { ref } from "vue";
 // constants
-import { wilaya } from "src/constants/constants";
-import { categorieOptionRecondi } from "src/constants/categorie";
+import { wilayaOption } from "src/constants/constants";
+import {
+  categorieOptionRecondi,
+  categorieOptionRecyclage,
+} from "src/constants/categorie";
 
 import SelectInput from "../inputs/SelectInput.vue";
 
@@ -45,17 +48,17 @@ export default {
   components: { SelectInput },
   setup() {
     let wilayaName = [];
-    wilaya.map((item) => {
+    wilayaOption.map((item) => {
       wilayaName.push(item.name);
     });
 
     return {
       wilayaName,
       categorieOptionRecondi,
+      categorieOptionRecyclage,
       wilaya: ref(null),
       type: ref(null),
       categorie: ref(null),
-      options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
       typeOptions: ["Recyclage", "Reconditionnement"],
     };
   },

@@ -1,7 +1,7 @@
 <template>
   <div class="row">
-    <div class="q-pa-sm">Lieu :</div>
-    <div class="q-pa-sm text-red-5 text-bold">{{ labelLieu }}</div>
+    <div class="q-pa-sm">Localisation :</div>
+    <div class="q-pa-sm text-secondary text-bold">{{ labelLieu }}</div>
     <q-btn icon="my_location" @click="sendCoords()" />
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
     sendCoords() {
       VueGeolocation.getLocation({}).then((coordinates) => {
         this.$emit("send-coords", { coords: coordinates });
-        this.labelLieu = "Votre position";
+        this.labelLieu = "Votre position a été enregistrée";
       });
     },
   },
