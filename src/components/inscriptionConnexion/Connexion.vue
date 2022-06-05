@@ -75,6 +75,7 @@ export default {
               localStorage.setItem("prenom_user", res.data.user.prenom);
               localStorage.setItem("email_user", res.data.user.email);
               localStorage.setItem("tel_user", res.data.user.tel);
+              localStorage.setItem("type_user", res.data.user.type_user);
 
               location.replace("/");
             }

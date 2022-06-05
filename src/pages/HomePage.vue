@@ -1,7 +1,16 @@
 <template>
   <div class="column items-center">
-    <CarrouselHome />
-    <FiltreRecherche @send-value="getFilterAnnonces" />
+    <CarrouselHome v-if="!filtre" />
+    <FiltreRecherche @send-value="getFilterAnnonces" v-if="!filtre" />
+    <div v-else class="row full-width">
+      <q-btn
+        icon="arrow_back"
+        class="q-ma-md justify-start"
+        color="secondary"
+        label="Retour"
+        @click="actualiser"
+      />
+    </div>
 
     <div v-if="!filtre">
       <DernieresAnnonces type="Reconditionnement" />
@@ -35,6 +44,9 @@ export default defineComponent({
       this.type = payload.type;
       this.categorie = payload.categorie;
       this.filtre = true;
+    },
+    actualiser() {
+      window.location.reload();
     },
   },
   setup() {

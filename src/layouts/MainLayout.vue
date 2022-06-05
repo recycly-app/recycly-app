@@ -11,10 +11,9 @@
 
 <script>
 import { defineComponent } from "vue";
-// import axios from 'axios';
 import HeaderDesktop from "src/components/header/HeaderDesktop.vue";
 import HeaderMobile from "src/components/header/HeaderMobile.vue";
-// import { apiUrl } from 'src/constants/constants';
+
 // store.js
 import { reactive } from "vue";
 
@@ -24,6 +23,7 @@ let nom_user = null;
 let prenom_user = null;
 let email_user = null;
 let tel_user = null;
+let type_user = null;
 
 if (localStorage.getItem("id_user")) {
   isLogged = true;
@@ -32,6 +32,7 @@ if (localStorage.getItem("id_user")) {
   prenom_user = localStorage.getItem("prenom_user");
   email_user = localStorage.getItem("email_user");
   tel_user = localStorage.getItem("tel_user");
+  type_user = localStorage.getItem("type_user");
 }
 export const store = reactive({
   isLogged: isLogged,
@@ -40,6 +41,7 @@ export const store = reactive({
   prenom_user: prenom_user,
   email_user: email_user,
   tel_user: tel_user,
+  type_user: type_user,
 });
 export default defineComponent({
   name: "MainLayout",
@@ -50,3 +52,5 @@ export default defineComponent({
   },
 });
 </script>
+
+<style></style>

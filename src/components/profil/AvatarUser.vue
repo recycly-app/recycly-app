@@ -16,17 +16,21 @@
 
 <script>
 export default {
-  name: 'AvatarUser',
+  name: "AvatarUser",
 };
 </script>
 
 <style>
-.avatar {
-  border-radius: 15px;
-}
 .edit-avatar {
   position: relative;
-  top: 55px;
-  right: 27px;
+  top: 115px;
+  right: 50px;
+}
+
+.avatar {
+  width: 8rem;
+  height: 8rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.7);
+  transform: translateY(50%);
 }
 </style>

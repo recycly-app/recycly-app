@@ -17,12 +17,6 @@
           <div class="col text-h6 ellipsis" :title="titre">
             {{ titre }}
           </div>
-          <div
-            class="col-auto text-grey text-caption q-pt-md row no-wrap items-center"
-          >
-            <q-icon name="place" />
-            250 ft
-          </div>
         </div>
       </q-card-section>
 

@@ -65,6 +65,11 @@ export default {
     logout() {
       localStorage.removeItem("id_user");
       localStorage.removeItem("token_user");
+      localStorage.removeItem("nom_user");
+      localStorage.removeItem("prenom_user");
+      localStorage.removeItem("email_user");
+      localStorage.removeItem("tel_user");
+      localStorage.removeItem("type_user");
       location.replace("/");
     },
   },
