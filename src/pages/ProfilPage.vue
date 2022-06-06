@@ -73,43 +73,4 @@ export default {
   justify-content: center;
   box-sizing: border-box;
 }
-
-.card .menu {
-  width: 100%;
-  height: 3.5rem;
-  padding: 1rem;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  position: relative;
-  box-sizing: border-box;
-}
-.card .menu .opener {
-  width: 2.5rem;
-  height: 2.5rem;
-  position: relative;
-  border-radius: 50%;
-  transition: background-color 100ms ease-in-out;
-}
-.card .menu .opener:hover {
-  background-color: #f2f2f2;
-}
-.card .menu .opener span {
-  background-color: #404040;
-  width: 0.4rem;
-  height: 0.4rem;
-  position: absolute;
-  top: 0;
-  left: calc(50% - 0.2rem);
-  border-radius: 50%;
-}
-.card .menu .opener span:nth-child(1) {
-  top: 0.45rem;
-}
-.card .menu .opener span:nth-child(2) {
-  top: 1.05rem;
-}
-.card .menu .opener span:nth-child(3) {
-  top: 1.65rem;
-}
 </style>

@@ -97,12 +97,6 @@ const linksList = [
     link: "/contact",
     separator: false,
   },
-  {
-    title: "Map",
-    icon: "record_voice_over",
-    link: "/map",
-    separator: false,
-  },
 ];
 export default {
   name: "HeaderMobile",
