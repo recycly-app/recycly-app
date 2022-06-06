@@ -1,7 +1,10 @@
 <template>
   <div class="column items-center">
-    <CarrouselHome v-if="!filtre" />
-    <FiltreRecherche @send-value="getFilterAnnonces" v-if="!filtre" />
+    <CarrouselHome v-if="!filtre && $q.platform.is.desktop" />
+    <div v-if="!filtre" class="full-width">
+      <FiltreRecherche @send-value="getFilterAnnonces" />
+    </div>
+
     <div v-else class="row full-width">
       <q-btn
         icon="arrow_back"

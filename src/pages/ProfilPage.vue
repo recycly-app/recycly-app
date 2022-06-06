@@ -2,7 +2,7 @@
   <div class="profil">
     <div class="card">
       <div class="banner">
-        <AvatarUser />
+        <AvatarUser :prenom="store.prenom_user" :nom="store.nom_user" />
       </div>
       <MenuProfil />
 
@@ -15,13 +15,18 @@
 import AvatarUser from "src/components/profil/AvatarUser.vue";
 import InfoProfil from "src/components/profil/InfoProfil.vue";
 import MenuProfil from "src/components/profil/MenuProfil.vue";
-
+import { store } from "src/layouts/MainLayout.vue";
 export default {
   name: "ProfilPage",
   components: {
     InfoProfil,
     AvatarUser,
     MenuProfil,
+  },
+  setup() {
+    return {
+      store,
+    };
   },
 };
 </script>

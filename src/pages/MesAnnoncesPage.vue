@@ -11,6 +11,7 @@
           :titre="annonce.titre"
           :description="annonce.description"
           :categorie="annonce.categorie"
+          :image="annonce.photo_annonce"
         />
       </div>
     </div>
@@ -26,6 +27,7 @@
           :titre="annonce.titre"
           :description="annonce.description"
           :categorie="annonce.categorie"
+          :image="annonce.photo_annonce"
         />
       </div>
     </div>

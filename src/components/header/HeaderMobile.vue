@@ -12,6 +12,7 @@
       />
 
       <q-toolbar-title> Recycly </q-toolbar-title>
+      <FiltreRechercheMobile />
       <ButtonUser :isLogged="store.isLogged" />
     </q-toolbar>
   </q-header>
@@ -40,6 +41,7 @@ import ItemMenu from "src/components/menu/ItemMenu.vue";
 import ButtonUser from "./ButtonUser.vue";
 import { store } from "src/layouts/MainLayout.vue";
 import { ref } from "vue";
+import FiltreRechercheMobile from "../home/FiltreRechercheMobile.vue";
 
 const linksList = [
   {
@@ -100,7 +102,7 @@ const linksList = [
 ];
 export default {
   name: "HeaderMobile",
-  components: { InfoUser, ItemMenu, ButtonUser },
+  components: { InfoUser, ItemMenu, ButtonUser, FiltreRechercheMobile },
   setup() {
     const leftDrawerOpen = ref(false);
 

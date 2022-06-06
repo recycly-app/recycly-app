@@ -19,7 +19,7 @@
               color="grey-6"
             />
           </router-link>
-          <router-link to="/mes-annonces" class="item-menu">
+          <router-link to="/messagerie" class="item-menu">
             <SimpleButton
               label="Mes messages"
               icon="message"
@@ -30,8 +30,8 @@
         </div>
         <q-separator vertical inset class="q-mx-lg" />
         <div class="column items-center">
-          <q-avatar size="72px">
-            <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
+          <q-avatar size="72px" color="primary" text-color="white">
+            {{ store.prenom_user[0] }} {{ store.nom_user[0] }}
           </q-avatar>
 
           <div class="text-subtitle1 q-mt-md q-mb-xs">

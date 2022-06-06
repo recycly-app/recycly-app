@@ -6,7 +6,7 @@
       </q-item-section>
 
       <q-item-section>
-        <q-item-label class="text-bold">{{ title }}</q-item-label>
+        <q-item-label class="text-bold text-h6">{{ title }}</q-item-label>
       </q-item-section>
     </q-item>
     <q-separator v-if="separator" color="orange-7" />

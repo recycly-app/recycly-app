@@ -1,8 +1,14 @@
 <template>
   <div>
-    <q-avatar size="120px" class="q-ma-md avatar">
-      <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
+    <q-avatar
+      size="120px"
+      color="primary"
+      text-color="white"
+      class="q-ma-md avatar"
+    >
+      {{ prenom[0] }} {{ nom[0] }}
     </q-avatar>
+
     <q-btn
       round
       dense
@@ -17,6 +23,10 @@
 <script>
 export default {
   name: "AvatarUser",
+  props: {
+    prenom: String,
+    nom: String,
+  },
 };
 </script>
 

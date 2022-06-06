@@ -35,8 +35,8 @@ const routes = [
         component: () => import("pages/MesAnnoncesPage.vue"),
       },
       {
-        path: "/map",
-        component: () => import("pages/TestMap.vue"),
+        path: "/messagerie",
+        component: () => import("pages/MessageriePage.vue"),
       },
     ],
   },

@@ -1,49 +1,53 @@
 <template>
-  <div class="row q-gutter-md filtre" v-if="$q.platform.is.desktop">
-    <SelectInput
-      icon="place"
-      label="Wilaya"
-      :options="wilayaName"
-      v-model="wilaya"
-      class="col"
-      @send-value="setWilaya"
-    />
-    <SelectInput
-      icon="list"
-      label="type"
-      :options="typeOptions"
-      v-model="type"
-      class="col"
-      @send-value="setType"
-      defaultValue="Reconditionnement"
-    />
-    <SelectInput
-      icon="list"
-      label="Catégorie"
-      :options="categorieOptionRecondi"
-      v-model="categorie"
-      class="col"
-      @send-value="setCategorie"
-      v-if="type == 'Reconditionnement'"
-    />
-    <SelectInput
-      icon="list"
-      label="Catégorie"
-      :options="categorieOptionRecyclage"
-      v-model="categorie"
-      class="col"
-      @send-value="setCategorie"
-      v-else
-    />
+  <div class="row justify-end">
+    <q-btn icon="search" rounded color="secondary" />
 
-    <q-btn
-      rounded
-      color="secondary"
-      size="md"
-      label="Rechercher"
-      class="btn-filtre"
-      @click="sendValue"
-    />
+    <q-menu class="filtre column items-center" style="min-width: 100%">
+      <SelectInput
+        icon="place"
+        label="Wilaya"
+        :options="wilayaName"
+        v-model="wilaya"
+        class="full-width"
+        @send-value="setWilaya"
+      />
+      <SelectInput
+        icon="list"
+        label="type"
+        :options="typeOptions"
+        v-model="type"
+        class="full-width"
+        @send-value="setType"
+        defaultValue="Reconditionnement"
+      />
+      <SelectInput
+        icon="list"
+        label="Catégorie"
+        :options="categorieOptionRecondi"
+        v-model="categorie"
+        class="full-width"
+        @send-value="setCategorie"
+        v-if="type == 'Reconditionnement'"
+      />
+      <SelectInput
+        icon="list"
+        label="Catégorie"
+        :options="categorieOptionRecyclage"
+        v-model="categorie"
+        class="full-width"
+        @send-value="setCategorie"
+        v-else
+      />
+
+      <q-btn
+        rounded
+        color="secondary"
+        size="md"
+        label="Rechercher"
+        class="btn-filtre q-mt-sm"
+        @click="sendValue"
+      />
+    </q-menu>
   </div>
 </template>
 

@@ -20,15 +20,6 @@
             style="top: 0; right: 12px; transform: translateY(-50%)"
             @click="showDialogMap()"
           />
-
-          <div class="row no-wrap items-center justify-end">
-            <div
-              class="col-auto text-grey text-caption q-pt-md row no-wrap items-center"
-            >
-              <q-icon name="place" />
-              250 ft
-            </div>
-          </div>
         </q-card-section>
         <q-card-section class="q-py-xs">
           <div class="text-h5">{{ annonce.titre }}</div>

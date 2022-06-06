@@ -2,15 +2,19 @@
   <q-card-section class="scroll q-pa-none">
     <q-item>
       <q-item-section avatar>
-        <q-avatar size="50px">
-          <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+        <q-avatar size="50px" color="primary" text-color="white">
+          {{ annonceur.nom }} {{ annonceur.prenom }}
         </q-avatar>
       </q-item-section>
 
       <q-item-section>
         <q-item-label>{{ annonceur.nom }} {{ annonceur.prenom }}</q-item-label>
-        <q-item-label caption>{{ annonceur.type_user }}</q-item-label>
-        <q-item-label caption>{{ date }}</q-item-label>
+        <q-item-label caption class="text-secondary">{{
+          annonceur.type_user
+        }}</q-item-label>
+        <q-item-label caption>{{
+          `${simpleDate[2]}-${simpleDate[1]}-${simpleDate[0]}`
+        }}</q-item-label>
       </q-item-section>
     </q-item>
   </q-card-section>
@@ -22,6 +26,15 @@ export default {
   props: {
     annonceur: Object,
     date: String,
+  },
+
+  setup(props) {
+    let simpleDate = props.date.split("T");
+
+    simpleDate = simpleDate[0].split("-");
+    return {
+      simpleDate,
+    };
   },
 };
 </script>

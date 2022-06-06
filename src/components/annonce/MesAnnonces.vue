@@ -14,7 +14,7 @@
 
     <q-card-section class="q-pt-none">
       <div class="text-caption text-grey q-ma-none">
-        {{ category }}
+        {{ categorie }}
       </div>
       <div class="text-subtitle1 text-grey">{{ type }}</div>
       <div class="text-subtitle2 text-blue-5">{{ categorie }}</div>
@@ -50,7 +50,6 @@ export default {
       axios
         .delete(apiUrl + "/annonce/" + this.type + "/delete/" + this.id)
         .then((res) => {
-          // location.replace("#/mes-annonces");
           location.reload();
         })
         .catch((err) => {
@@ -69,6 +68,7 @@ export default {
   },
   setup() {
     return {
+      apiUrl,
       stars: ref(4),
     };
   },
