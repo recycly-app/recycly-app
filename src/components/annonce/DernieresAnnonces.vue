@@ -1,7 +1,5 @@
 <template>
   <div class="full-width">
-    <div class="q-ma-sm text-h6">Les dernières annonces : {{ this.type }}</div>
-
     <div class="row q-gutter-xs justify-center">
       <AnnonceCard
         v-for="(annonce, index) in annonces"
@@ -12,7 +10,7 @@
             : annonce.id_annonce_recondition
         "
         :titre="annonce.titre"
-        :type="this.type"
+        :categorie="annonce.categorie"
         :prix="annonce.prix"
         :description="annonce.description"
         :image="annonce.photo_annonce"

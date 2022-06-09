@@ -1,6 +1,6 @@
 <template>
   <div class="column items-center">
-    <CarrouselHome v-if="!filtre && $q.platform.is.desktop" />
+    <ParallaxHome v-if="!filtre && $q.platform.is.desktop" />
     <div v-if="!filtre" class="full-width">
       <FiltreRecherche @send-value="getFilterAnnonces" />
     </div>
@@ -16,8 +16,7 @@
     </div>
 
     <div v-if="!filtre">
-      <DernieresAnnonces type="Reconditionnement" />
-      <DernieresAnnonces type="Recyclage" />
+      <ZoneAnnonces />
     </div>
 
     <div v-else>
@@ -28,18 +27,18 @@
 
 <script>
 import { defineComponent, ref } from "vue";
-import DernieresAnnonces from "src/components/annonce/DernieresAnnonces.vue";
 import FiltreRecherche from "src/components/home/FiltreRecherche.vue";
-import CarrouselHome from "../components/home/CarrouselHome.vue";
+import ParallaxHome from "../components/home/ParallaxHome.vue";
 import ResultatFiltre from "src/components/annonce/ResultatFiltre.vue";
+import ZoneAnnonces from "src/components/home/ZoneAnnonces.vue";
 
 export default defineComponent({
   name: "homePage",
   components: {
-    DernieresAnnonces,
     FiltreRecherche,
-    CarrouselHome,
+    ParallaxHome,
     ResultatFiltre,
+    ZoneAnnonces,
   },
   methods: {
     getFilterAnnonces(payload) {

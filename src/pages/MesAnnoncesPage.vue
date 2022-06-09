@@ -12,6 +12,8 @@
           :description="annonce.description"
           :categorie="annonce.categorie"
           :image="annonce.photo_annonce"
+          :prix="annonce.prix"
+          :annonce="annonce"
         />
       </div>
     </div>
@@ -28,6 +30,8 @@
           :description="annonce.description"
           :categorie="annonce.categorie"
           :image="annonce.photo_annonce"
+          :prix="annonce.prix"
+          :annonce="annonce"
         />
       </div>
     </div>
@@ -52,6 +56,7 @@ export default {
     axios
       .get(apiUrl + "/annonce/Recyclage/getUserAnnonces/" + store.id_user)
       .then((res) => {
+        console.log(res);
         this.annoncesRecy = res.data.annonce;
       })
       .catch((err) => console.log(err));

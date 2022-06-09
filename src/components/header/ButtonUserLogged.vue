@@ -27,6 +27,14 @@
               color="grey-6"
             />
           </router-link>
+          <router-link to="/annonces-reserve" class="item-menu">
+            <SimpleButton
+              label="Mes réservations"
+              icon="handshake"
+              size="1.5em"
+              color="grey-6"
+            />
+          </router-link>
         </div>
         <q-separator vertical inset class="q-mx-lg" />
         <div class="column items-center">

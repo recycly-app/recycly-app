@@ -21,12 +21,12 @@
       </q-card-section>
 
       <q-card-section class="q-pt-none">
-        <div class="text-subtitle1">{{ type }}</div>
+        <div class="text-subtitle1">{{ categorie }}</div>
         <div class="text-subtitle2 text-blue-5">{{ prix }} DA</div>
       </q-card-section>
 
       <q-card-actions class="q-py-none">
-        <q-btn flat color="" icon="chat" />
+        <q-btn flat icon="chat" />
         <q-btn flat color="secondary"> Réserver </q-btn>
         <q-btn
           flat
@@ -67,7 +67,7 @@ export default {
   props: {
     id: Number,
     titre: String,
-    type: String,
+    categorie: String,
     description: String,
     prix: Number,
     image: String,

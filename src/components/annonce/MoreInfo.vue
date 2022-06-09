@@ -38,7 +38,7 @@
       </div>
       <q-separator />
       <q-card-actions align="right">
-        <q-btn flat icon="chat" />
+        <q-btn flat icon="chat" label="Contacter" />
         <q-btn flat label="Réserver" />
         <q-btn flat label="Fermer" color="secondary" v-close-popup />
       </q-card-actions>

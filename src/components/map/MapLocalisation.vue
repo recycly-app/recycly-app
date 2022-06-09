@@ -5,7 +5,6 @@
 
 <script>
 import mapboxgl from "mapbox-gl";
-import VueGeolocation from "vue-browser-geolocation";
 
 export default {
   name: "MapLocalisation",
