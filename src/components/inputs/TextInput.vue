@@ -9,6 +9,7 @@
     class="q-ma-sm"
     color="secondary"
     :label="label"
+    :placeholder="placeholder"
   >
     <template v-slot:prepend>
       <q-icon :name="icon" />
@@ -26,6 +27,7 @@ export default {
     suffix: String,
     icon: String,
     label: String,
+    placeholder: String,
   },
   setup() {
     const value = ref(null);

@@ -1,40 +1,51 @@
 <template>
   <div class="q-pa-md full-width">
-    <div>
-      <div class="text-h5 q-mb-sm">Mes annonces Recyclage:</div>
-      <div class="row q-gutter-md">
-        <MesAnnonces
-          v-for="(annonce, index) in annoncesRecy"
-          :id="annonce.id_annonce_recy"
-          :key="index"
-          type="Recyclage"
-          :titre="annonce.titre"
-          :description="annonce.description"
-          :categorie="annonce.categorie"
-          :image="annonce.photo_annonce"
-          :prix="annonce.prix"
-          :annonce="annonce"
+    <div class="text-h6 row justify-center">Mes annonces</div>
+    <q-card>
+      <q-tabs
+        v-model="tab"
+        dense
+        class="q-pa-none full-width"
+        align="justify"
+        narrow-indicator
+        active-bg-color="orange-1"
+      >
+        <q-tab name="recyclage" label="Recyclage" class="text-primary" />
+        <q-tab
+          name="reconditionnement"
+          label="Reconditionnement"
+          class="text-secondary"
         />
-      </div>
-    </div>
-    <q-separator class="q-my-md" />
-    <div>
-      <div class="text-h5 q-mb-sm">Mes annonces Reconditionnement:</div>
-      <div class="row q-gutter-md">
-        <MesAnnonces
-          v-for="(annonce, index) in annoncesRecondi"
-          :id="annonce.id_annonce_recondition"
-          :key="index"
-          type="Reconditionnement"
-          :titre="annonce.titre"
-          :description="annonce.description"
-          :categorie="annonce.categorie"
-          :image="annonce.photo_annonce"
-          :prix="annonce.prix"
-          :annonce="annonce"
-        />
-      </div>
-    </div>
+      </q-tabs>
+
+      <q-separator />
+
+      <q-tab-panels v-model="tab" animated>
+        <q-tab-panel name="recyclage">
+          <div class="row q-gutter-md">
+            <MesAnnonces
+              v-for="(annonce, index) in annoncesRecy"
+              :id="annonce.id_annonce_recy"
+              :key="index"
+              type="Recyclage"
+              :annonce="annonce"
+            />
+          </div>
+        </q-tab-panel>
+
+        <q-tab-panel name="reconditionnement">
+          <div class="row q-gutter-md">
+            <MesAnnonces
+              v-for="(annonce, index) in annoncesRecondi"
+              :id="annonce.id_annonce_recondition"
+              :key="index"
+              type="Reconditionnement"
+              :annonce="annonce"
+            />
+          </div>
+        </q-tab-panel>
+      </q-tab-panels>
+    </q-card>
   </div>
 </template>
 
@@ -43,6 +54,7 @@ import MesAnnonces from "../components/annonce/MesAnnonces.vue";
 import axios from "axios";
 import { apiUrl } from "src/constants/constants";
 import { store } from "src/layouts/MainLayout.vue";
+import { ref } from "vue";
 export default {
   name: "MesAnnoncesPage",
   components: { MesAnnonces },
@@ -52,11 +64,15 @@ export default {
       annoncesRecondi: null,
     };
   },
+  setup() {
+    return {
+      tab: ref("recyclage"),
+    };
+  },
   mounted() {
     axios
       .get(apiUrl + "/annonce/Recyclage/getUserAnnonces/" + store.id_user)
       .then((res) => {
-        console.log(res);
         this.annoncesRecy = res.data.annonce;
       })
       .catch((err) => console.log(err));

@@ -26,12 +26,19 @@
       </q-card-section>
 
       <q-card-actions class="q-py-none">
-        <q-btn flat icon="chat" />
+        <q-btn
+          flat
+          icon="chat"
+          label="Contacter"
+          size="11px"
+          @click="goToMessage()"
+        />
+
         <q-btn flat color="secondary"> Réserver </q-btn>
         <q-btn
           flat
           label="Voir plus"
-          size="12px"
+          size="11px"
           @click="showDialogMoreInfo()"
         />
       </q-card-actions>
@@ -81,23 +88,31 @@ export default {
     let showMoreInfo = ref(false);
     let showMap = ref(false);
     let annonceur = ref({});
-
+    async function getAnnonceur() {
+      await axios
+        .get(apiUrl + "/user/getUser/" + props.annonce.id_annonceur)
+        .then((res) => {
+          annonceur.value = res.data.user[0];
+        })
+        .catch((err) => console.log("erreur annonce" + err));
+    }
     return {
+      getAnnonceur,
       annonceur,
       apiUrl,
       showMoreInfo,
       showMap,
+      async goToMessage() {
+        await getAnnonceur();
+        location.href = `/#/messagerie/${annonceur.value.id_user}`;
+      },
       showDialogMap() {
         showMap.value = true;
       },
-      async showDialogMoreInfo() {
+
+      showDialogMoreInfo() {
+        getAnnonceur();
         showMoreInfo.value = true;
-        await axios
-          .get(apiUrl + "/user/getUser/" + props.annonce.id_annonceur)
-          .then((res) => {
-            annonceur.value = res.data.user[0];
-          })
-          .catch((err) => console.log("erreur annonce" + err));
       },
     };
   },
@@ -108,7 +123,7 @@ export default {
 .my-card {
   width: 100%;
   max-width: 300px;
-  height: 400px;
+  height: 380px;
   min-width: 300px;
   margin: 10px;
 }

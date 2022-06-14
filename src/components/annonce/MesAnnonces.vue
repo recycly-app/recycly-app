@@ -1,23 +1,24 @@
 <template>
   <q-card class="my-card">
-    <q-img :src="`${apiUrl}/images/${image}`" style="height: 225px" />
+    <q-img
+      :src="`${apiUrl}/images/${annonce.photo_annonce}`"
+      style="height: 225px"
+    />
 
     <q-card-section class="q-pb-none">
       <div class="row no-wrap items-center">
-        <div class="col text-h6 ellipsis" :title="titre">{{ titre }}</div>
+        <div class="col text-h6 ellipsis" :title="annonce.titre">
+          {{ annonce.titre }}
+        </div>
       </div>
-      <!-- <div v-if="type == 'Reconditionnement'">
-        <span class="q-mr-sm">État</span
-        ><q-rating v-model="stars" :max="5" size="20px" />
-      </div> -->
     </q-card-section>
 
     <q-card-section class="q-pt-none">
       <div class="text-caption text-grey q-ma-none">
-        {{ categorie }}
+        {{ annonce.categorie }}
       </div>
 
-      <div class="text-subtitle2 text-blue-5">{{ prix }} DA</div>
+      <div class="text-subtitle2 text-blue-5">{{ annonce.prix }} DA</div>
     </q-card-section>
 
     <q-separator />
@@ -25,22 +26,20 @@
     <q-card-actions class="q-py-none">
       <q-btn flat color="red-6" @click="deleteAnnonce" icon="delete" />
 
-      <q-btn flat color="primary">
-        <q-icon name="edit_note" color="primary" /> modifier
+      <q-btn flat color="primary" @click="showDialogEdit()">
+        <q-icon name="edit_note" color="primary" />
+        modifier
       </q-btn>
       <q-btn flat label="Voir plus" size="12px" @click="showDialogMoreInfo()" />
     </q-card-actions>
   </q-card>
   <!-- ------------------------------------------Dialogue More Info --------------------------------------------->
   <q-dialog v-model="showMoreInfo">
-    <MoreInfo
-      :id="id"
-      :titre="titre"
-      :type="type"
-      :description="description"
-      :image="image"
-      :annonce="annonce"
-      v-bind:annonceur="annonceur"
+    <MoreInfo :type="type" :annonce="annonce" v-bind:annonceur="annonceur"
+  /></q-dialog>
+  <!-- ------------------------------------------Dialogue More Info --------------------------------------------->
+  <q-dialog v-model="showEdit">
+    <ModifierAnnonce :annonce="annonce"
   /></q-dialog>
 </template>
 
@@ -49,9 +48,15 @@ import { ref } from "vue";
 import axios from "axios";
 import { apiUrl } from "src/constants/constants";
 import MoreInfo from "./MoreInfo.vue";
+import ModifierAnnonce from "./ModifierAnnonce.vue";
 
 export default {
   name: "MesAnnonces",
+  props: {
+    id: Number,
+    annonce: Object,
+    type: String,
+  },
   methods: {
     deleteAnnonce() {
       axios
@@ -64,23 +69,20 @@ export default {
         });
     },
   },
-  props: {
-    id: Number,
-    titre: String,
-    description: String,
-    categorie: String,
-    image: String,
-    annonce: Object,
-    prix: Number,
-  },
+
   setup(props) {
     let showMoreInfo = ref(false);
+    let showEdit = ref(false);
     let annonceur = ref({});
     return {
       showMoreInfo,
+      showEdit,
       annonceur,
       apiUrl,
-      // stars: ref(4),
+      showDialogEdit() {
+        showEdit.value = true;
+      },
+
       async showDialogMoreInfo() {
         showMoreInfo.value = true;
         await axios
@@ -92,7 +94,7 @@ export default {
       },
     };
   },
-  components: { MoreInfo },
+  components: { MoreInfo, ModifierAnnonce },
 };
 </script>
 
@@ -100,7 +102,7 @@ export default {
 .my-card {
   width: 100%;
   max-width: 300px;
-  height: 400px;
+  height: 380px;
   min-width: 300px;
   margin: 10px;
 }
