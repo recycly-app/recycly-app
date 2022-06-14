@@ -3,7 +3,7 @@
     <q-item>
       <q-item-section avatar>
         <q-avatar size="50px" color="primary" text-color="white">
-          {{ annonceur.nom }} {{ annonceur.prenom }}
+          <div style="font-size: 11px">{{ annonceur.nom }}</div>
         </q-avatar>
       </q-item-section>
 

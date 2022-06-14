@@ -13,7 +13,7 @@ const routes = [
         path: "/reconditionnement",
         component: () => import("pages/ReconditionnementPage.vue"),
       },
-      { path: "/contact", component: () => import("pages/ContactPage.vue") },
+
       {
         path: "/deposer-annonce",
         component: () => import("pages/DeposerAnnoncePage.vue"),
@@ -35,8 +35,12 @@ const routes = [
         component: () => import("pages/MesAnnoncesPage.vue"),
       },
       {
-        path: "/messagerie",
+        path: "/messagerie/:id",
         component: () => import("pages/MessageriePage.vue"),
+      },
+      {
+        path: "/messagerie",
+        component: () => import("pages/ContactsPage.vue"),
       },
     ],
   },

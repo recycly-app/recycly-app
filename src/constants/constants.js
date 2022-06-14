@@ -1,5 +1,5 @@
-// export const apiUrl = "http://localhost:5000";
-export const apiUrl = "https://test.divein-isi.com";
+export const apiUrl = "http://localhost:5000";
+// export const apiUrl = "https://test.divein-isi.com";
 
 export const wilayaOption = [
   {
