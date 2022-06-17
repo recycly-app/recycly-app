@@ -46,6 +46,10 @@ const routes = [
         path: "/mes-reservation",
         component: () => import("pages/MesReservationPage.vue"),
       },
+      {
+        path: "/notifications",
+        component: () => import("pages/NotificationsPage.vue"),
+      },
     ],
   },
 
