@@ -5,7 +5,14 @@
     <div class="title">{{ store.type_user }}</div>
     <div class="actions">
       <div class="follow-info">
-        <h2><span class="text-secondary">12</span><small>Annonces</small></h2>
+        <h2>
+          <span class="text-secondary">{{ nombreAnnoncesRecy }}</span
+          ><small>Annonces recyclage</small>
+        </h2>
+        <h2>
+          <span class="text-secondary">{{ nombreAnnoncesRecondition }}</span
+          ><small>Annonces reconditionnement</small>
+        </h2>
       </div>
     </div>
     <div class="coordonnees">
@@ -17,14 +24,35 @@
 </template>
 
 <script>
+import axios from "axios";
 import { store } from "src/layouts/MainLayout.vue";
+import { apiUrl } from "../../constants/constants";
 export default {
   name: "InfoProfil",
 
   data() {
     return {
       store,
+      nombreAnnoncesRecy: 0,
+      nombreAnnoncesRecondition: 0,
     };
+  },
+  mounted() {
+    axios
+      .get(apiUrl + "/annonce/Recyclage/getNombreAnnonces/" + store.id_user)
+      .then((res) => {
+        this.nombreAnnoncesRecy = res.data[0].nombreAnnonces;
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get(
+        apiUrl + "/annonce/Reconditionnement/getNombreAnnonces/" + store.id_user
+      )
+      .then((res) => {
+        this.nombreAnnoncesRecondition = res.data[0].nombreAnnonces;
+      })
+      .catch((err) => console.log(err));
   },
 };
 </script>
@@ -60,9 +88,6 @@ export default {
   display: flex;
   flex-direction: column;
   order: 99;
-}
-.info-user .actions .follow-info {
-  display: flex;
 }
 .info-user .actions .follow-info h2 {
   text-align: center;

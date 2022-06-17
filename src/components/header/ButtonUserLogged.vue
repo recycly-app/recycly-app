@@ -27,10 +27,18 @@
               color="grey-6"
             />
           </router-link>
-          <router-link to="/annonces-reserve" class="item-menu">
+          <router-link to="/mes-reservation" class="item-menu">
             <SimpleButton
               label="Mes réservations"
               icon="handshake"
+              size="1.5em"
+              color="grey-6"
+            />
+          </router-link>
+          <router-link to="/notifications" class="item-menu">
+            <SimpleButton
+              label="Notifications"
+              icon="notifications"
               size="1.5em"
               color="grey-6"
             />

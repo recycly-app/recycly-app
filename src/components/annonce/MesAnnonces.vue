@@ -1,46 +1,58 @@
 <template>
-  <q-card class="my-card">
-    <q-img
-      :src="`${apiUrl}/images/${annonce.photo_annonce}`"
-      style="height: 225px"
-    />
+  <div>
+    <q-card class="my-card">
+      <q-img
+        :src="`${apiUrl}/images/${annonce.photo_annonce}`"
+        style="height: 225px"
+      />
 
-    <q-card-section class="q-pb-none">
-      <div class="row no-wrap items-center">
-        <div class="col text-h6 ellipsis" :title="annonce.titre">
-          {{ annonce.titre }}
+      <q-card-section class="q-pb-none">
+        <div class="row no-wrap items-center">
+          <div class="col text-h6 ellipsis" :title="annonce.titre">
+            {{ annonce.titre }}
+          </div>
         </div>
-      </div>
-    </q-card-section>
+      </q-card-section>
 
-    <q-card-section class="q-pt-none">
-      <div class="text-caption text-grey q-ma-none">
-        {{ annonce.categorie }}
-      </div>
+      <q-card-section class="q-pt-none">
+        <div class="text-caption text-grey q-ma-none">
+          {{ annonce.categorie }}
+        </div>
 
-      <div class="text-subtitle2 text-blue-5">{{ annonce.prix }} DA</div>
-    </q-card-section>
+        <div class="text-subtitle2 text-blue-5">{{ annonce.prix }} DA</div>
+      </q-card-section>
 
-    <q-separator />
+      <q-separator />
 
-    <q-card-actions class="q-py-none">
-      <q-btn flat color="red-6" @click="deleteAnnonce" icon="delete" />
+      <q-card-actions class="q-py-none">
+        <q-btn flat color="red-6" @click="deleteAnnonce" icon="delete" />
 
-      <q-btn flat color="primary" @click="showDialogEdit()">
-        <q-icon name="edit_note" color="primary" />
-        modifier
-      </q-btn>
-      <q-btn flat label="Voir plus" size="12px" @click="showDialogMoreInfo()" />
-    </q-card-actions>
-  </q-card>
-  <!-- ------------------------------------------Dialogue More Info --------------------------------------------->
-  <q-dialog v-model="showMoreInfo">
-    <MoreInfo :type="type" :annonce="annonce" v-bind:annonceur="annonceur"
-  /></q-dialog>
-  <!-- ------------------------------------------Dialogue More Info --------------------------------------------->
-  <q-dialog v-model="showEdit">
-    <ModifierAnnonce :annonce="annonce"
-  /></q-dialog>
+        <q-btn flat color="primary" @click="showDialogEdit()">
+          <q-icon name="edit_note" color="primary" />
+          modifier
+        </q-btn>
+        <q-btn
+          flat
+          label="Voir plus"
+          size="12px"
+          @click="showDialogMoreInfo()"
+        />
+      </q-card-actions>
+    </q-card>
+    <!-- ------------------------------------------Dialogue More Info --------------------------------------------->
+    <q-dialog v-model="showMoreInfo">
+      <MoreInfo
+        :type="type"
+        :annonce="annonce"
+        v-bind:annonceur="annonceur"
+        :own="true"
+      />
+    </q-dialog>
+    <!-- ------------------------------------------Dialogue Edit annonce --------------------------------------------->
+    <q-dialog v-model="showEdit">
+      <ModifierAnnonce :annonce="annonce" />
+    </q-dialog>
+  </div>
 </template>
 
 <script>

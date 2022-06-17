@@ -42,6 +42,10 @@ const routes = [
         path: "/messagerie",
         component: () => import("pages/ContactsPage.vue"),
       },
+      {
+        path: "/mes-reservation",
+        component: () => import("pages/MesReservationPage.vue"),
+      },
     ],
   },
 

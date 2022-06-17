@@ -9,12 +9,8 @@
             ? annonce.id_annonce_recy
             : annonce.id_annonce_recondition
         "
-        :titre="annonce.titre"
-        :categorie="annonce.categorie"
-        :prix="annonce.prix"
-        :description="annonce.description"
-        :image="annonce.photo_annonce"
         :annonce="annonce"
+        :type="type"
       />
     </div>
   </div>

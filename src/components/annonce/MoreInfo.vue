@@ -1,11 +1,11 @@
 <template>
   <div>
     <q-card>
-      <InfoAnnonceur :annonceur="annonceur" :date="annonce.date" />
+      <InfoAnnonceur :annonceur="annonceur" :date="annonce.date" v-if="!own" />
       <q-separator />
 
       <div>
-        <div class="row justify-center">
+        <div class="row justify-center q-mt-md">
           <q-img
             :src="`${apiUrl}/images/${annonce.photo_annonce}`"
             class="img-more-info"
@@ -23,7 +23,6 @@
         </q-card-section>
         <q-card-section class="q-py-xs">
           <div class="text-h5">{{ annonce.titre }}</div>
-          <div class="text-h7">{{ type }}</div>
           <div class="text-subtitle2 text-blue-5">{{ annonce.prix }} DA</div>
         </q-card-section>
         <q-separator />
@@ -38,8 +37,8 @@
       </div>
       <q-separator />
       <q-card-actions align="right">
-        <q-btn flat icon="chat" label="Contacter" />
-        <q-btn flat label="Réserver" />
+        <q-btn flat icon="chat" label="Contacter" v-if="!own" />
+        <q-btn flat label="Réserver" v-if="!own" />
         <q-btn flat label="Fermer" color="secondary" v-close-popup />
       </q-card-actions>
     </q-card>
@@ -63,9 +62,10 @@ export default {
     MapLocalisation,
   },
   props: {
-    type: String,
+    // type: String,
     annonce: Object,
     annonceur: Object,
+    own: Boolean,
   },
   data() {
     return {
