@@ -60,6 +60,11 @@
     <q-dialog v-model="showReserver">
       <ReserverAnnonce :type="type" :id="annonce.id_annonce" />
     </q-dialog>
+
+    <!-- ------------------------------------------Dialogue conncetez vous --------------------------------------------->
+    <q-dialog v-model="showConnectezVous">
+      <ConnectezVous />
+    </q-dialog>
   </div>
 </template>
 
@@ -70,7 +75,9 @@ import MapLocalisation from "../map/MapLocalisation.vue";
 import { apiUrl } from "src/constants/constants";
 import axios from "axios";
 import ReserverAnnonce from "./ReserverAnnonce.vue";
-
+import { store } from "src/layouts/MainLayout.vue";
+import ConnectezVous from "./ConnectezVous.vue";
+undefined;
 export default {
   name: "AnnonceCard",
 
@@ -83,11 +90,14 @@ export default {
     MoreInfo,
     MapLocalisation,
     ReserverAnnonce,
+    ConnectezVous,
   },
+
   setup(props) {
     let showMoreInfo = ref(false);
     let showMap = ref(false);
     let showReserver = ref(false);
+    let showConnectezVous = ref(false);
 
     let annonceur = ref({});
     async function getAnnonceur() {
@@ -98,16 +108,26 @@ export default {
         })
         .catch((err) => console.log("erreur annonce" + err));
     }
+    function showDialogConnectezVous() {
+      showConnectezVous.value = true;
+    }
     return {
+      store,
       getAnnonceur,
       annonceur,
       apiUrl,
       showMoreInfo,
       showMap,
       showReserver,
+      showConnectezVous,
+      showDialogConnectezVous,
       async goToMessage() {
-        await getAnnonceur();
-        location.href = `/#/messagerie/${annonceur.value.id_user}`;
+        if (store.id_user == undefined) {
+          showDialogConnectezVous();
+        } else {
+          await getAnnonceur();
+          location.href = `/#/messagerie/${annonceur.value.id_user}`;
+        }
       },
       showDialogMap() {
         showMap.value = true;
@@ -118,7 +138,11 @@ export default {
         showMoreInfo.value = true;
       },
       showDialogReserver() {
-        showReserver.value = true;
+        if (store.id_user == undefined) {
+          showDialogConnectezVous();
+        } else {
+          showReserver.value = true;
+        }
       },
     };
   },
