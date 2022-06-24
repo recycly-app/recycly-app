@@ -4,11 +4,7 @@
       <AnnonceCard
         v-for="(annonce, index) in annonces"
         :key="index + annonce.titre"
-        :id="
-          annonce.id_annonce_recy
-            ? annonce.id_annonce_recy
-            : annonce.id_annonce_recondition
-        "
+        :id="annonce.id_annonce"
         :annonce="annonce"
         :type="type"
       />

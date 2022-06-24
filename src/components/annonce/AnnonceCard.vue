@@ -58,14 +58,7 @@
 
     <!-- ------------------------------------------Dialogue Réserver --------------------------------------------->
     <q-dialog v-model="showReserver">
-      <ReserverAnnonce
-        :type="type"
-        :id="
-          annonce.id_annonce_recy
-            ? annonce.id_annonce_recy
-            : annonce.id_annonce_recondition
-        "
-      />
+      <ReserverAnnonce :type="type" :id="annonce.id_annonce" />
     </q-dialog>
   </div>
 </template>
