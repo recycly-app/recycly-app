@@ -55,13 +55,21 @@
             label="Description"
             class="q-ma-sm"
           />
-          <TextInput
-            type="number"
-            suffix="DA"
-            icon="payments"
-            label="Prix"
-            v-model="prix"
-          />
+          <div class="row">
+            <TextInput
+              type="number"
+              suffix="DA"
+              icon="payments"
+              label="Prix"
+              v-model="prix"
+            />
+            <TextInput
+              type="text"
+              label="Quantité"
+              v-model="quantite"
+              v-if="type == 'Recyclage'"
+            />
+          </div>
           <q-stepper-navigation>
             <q-btn @click="step = 3" color="primary" label="Continuer" />
             <q-btn
@@ -162,7 +170,7 @@ export default {
     const description = ref(null);
     const prix = ref(null);
     const categorie = ref(null);
-    const etat = ref(null);
+    const quantite = ref(null);
     const lieu = ref(null);
     const wilaya = ref(null);
     const $q = useQuasar();
@@ -177,12 +185,11 @@ export default {
       wilaya,
       type,
       titre,
+      quantite,
       categorie,
       lieu,
-      etat,
       prix,
       description,
-      etatOptions: ["bon", "mauvais"],
       image,
       alert,
       onSubmit() {
@@ -197,7 +204,7 @@ export default {
         formData.append("date", dateAnnonce);
         formData.append("idAnnonceur", store.id_user);
         formData.append("prix", prix.value);
-        formData.append("etat", etat.value);
+        formData.append("quantite", quantite.value);
         formData.append("categorie", categorie.value);
         formData.append("lieuRecuperation", lieu.value);
         formData.append("wilaya", wilaya.value);
@@ -213,7 +220,9 @@ export default {
               title: "Annonce publié avec succès",
               message: "Consultez vos annonces dans la section Mes annonces",
             })
-              .onOk(() => {})
+              .onOk(() => {
+                window.location.reload();
+              })
               .onCancel(() => {})
               .onDismiss(() => {});
           })
@@ -223,6 +232,10 @@ export default {
       },
     };
   },
-  components: { SelectInput, TextInput, LocalisationButtun },
+  components: {
+    SelectInput,
+    TextInput,
+    LocalisationButtun,
+  },
 };
 </script>
