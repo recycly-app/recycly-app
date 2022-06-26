@@ -21,6 +21,12 @@
             @click="showDialogMap()"
           />
         </q-card-section>
+        <div
+          class="col-auto text-grey text-caption q-pt-md row justify-end q-pa-md items-center"
+        >
+          <q-icon name="place" />
+          {{ annonce.wilaya }}
+        </div>
         <q-card-section class="q-py-xs">
           <div class="text-h5">{{ annonce.titre }}</div>
           <div class="text-subtitle2 text-blue-5">{{ annonce.prix }} DA</div>

@@ -26,6 +26,7 @@
 <script>
 import axios from "axios";
 import { apiUrl } from "../../constants/constants";
+import { date } from "quasar";
 
 export default {
   props: {
@@ -45,6 +46,16 @@ export default {
               props.annonce.id_reservation +
               "/accepter"
           )
+          .then((res) => {
+            window.location.reload();
+          })
+          .catch((err) => console.log(err));
+
+        axios
+          .post(apiUrl + "/annonce/" + props.type + "/addNotification", {
+            idReservation: props.annonce.id_reservation,
+            date_heure: new Date(),
+          })
           .then((res) => {})
           .catch((err) => console.log(err));
       },
@@ -59,7 +70,9 @@ export default {
               props.annonce.id_reservation +
               "/refuser"
           )
-          .then((res) => {})
+          .then((res) => {
+            window.location.reload();
+          })
           .catch((err) => console.log(err));
       },
     };

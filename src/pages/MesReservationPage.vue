@@ -2,22 +2,11 @@
   <div class="q-pa-md full-width">
     <div class="text-h6 row justify-center">Mes réservations</div>
     <div>
-      <div class="text-h6">Annonces recyclage</div>
       <ReservationItem
-        v-for="(annoceRecy, index) in annoncesRecy"
+        v-for="(annonce, index) in annonces"
         :key="index"
-        :annonce="annoceRecy"
+        :annonce="annonce"
         type="Recyclage"
-      />
-    </div>
-
-    <div>
-      <div class="text-h6">Annonces reconditionnement</div>
-      <ReservationItem
-        v-for="(annonceRecondition, index) in annoncesRecondition"
-        :key="index"
-        :annonce="annonceRecondition"
-        type="Reconditionnement"
       />
     </div>
   </div>
@@ -35,8 +24,7 @@ export default {
   data() {
     return {
       store,
-      annoncesRecy: null,
-      annoncesRecondition: null,
+      annonces: null,
     };
   },
   mounted() {
@@ -47,20 +35,11 @@ export default {
           this.store.id_user
       )
       .then((res) => {
-        this.annoncesRecy = res.data;
+        this.annonces = res.data;
       })
-      .catch();
-
-    axios
-      .get(
-        apiUrl +
-          "/annonce/Reconditionnement/getReservationAnnonces/" +
-          this.store.id_user
-      )
-      .then((res) => {
-        this.annoncesRecondition = res.data;
-      })
-      .catch();
+      .catch((err) => {
+        console.log(err);
+      });
   },
 };
 </script>

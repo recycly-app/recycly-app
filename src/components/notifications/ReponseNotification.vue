@@ -18,11 +18,25 @@
 </template>
 
 <script>
+import axios from "axios";
+import { apiUrl } from "src/constants/constants";
+
 export default {
   props: {
-    notificationUser: Object,
-    date: String,
     notification: String,
+  },
+  data() {
+    return {};
+  },
+  mounted(props) {
+    axios
+      .get(apiUrl + "/user/getUser/")
+      .then((res) => {
+        this.annonces = res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 };
 </script>
