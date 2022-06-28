@@ -1,38 +1,40 @@
 <template>
-  <q-header elevated v-if="$q.platform.is.mobile" class="bg-light-green-7">
-    <q-toolbar>
-      <q-btn
-        flat
-        dense
-        round
-        icon="menu"
-        aria-label="Menu"
-        @click="toggleLeftDrawer"
-        print-only="mobile"
-      />
+  <div>
+    <q-header elevated v-if="$q.platform.is.mobile" class="bg-light-green-7">
+      <q-toolbar>
+        <q-btn
+          flat
+          dense
+          round
+          icon="menu"
+          aria-label="Menu"
+          @click="toggleLeftDrawer"
+          print-only="mobile"
+        />
 
-      <q-toolbar-title> Recycly </q-toolbar-title>
-      <FiltreRechercheMobile />
-      <ButtonUser :isLogged="store.isLogged" />
-    </q-toolbar>
-  </q-header>
-  <q-drawer
-    v-model="leftDrawerOpen"
-    show-if-above
-    bordered
-    :breakpoint="690"
-    behavior="mobile"
-  >
-    <InfoUser />
-    <q-list>
-      <ItemMenu
-        v-for="link in itemsMenu"
-        :key="link.title"
-        v-bind="link"
-        :separator="link.separator"
-      />
-    </q-list>
-  </q-drawer>
+        <q-toolbar-title> Recycly </q-toolbar-title>
+        <FiltreRechercheMobile />
+        <ButtonUser :isLogged="store.isLogged" />
+      </q-toolbar>
+    </q-header>
+    <q-drawer
+      v-model="leftDrawerOpen"
+      show-if-above
+      bordered
+      :breakpoint="690"
+      behavior="mobile"
+    >
+      <InfoUser />
+      <q-list>
+        <ItemMenu
+          v-for="link in itemsMenu"
+          :key="link.title"
+          v-bind="link"
+          :separator="link.separator"
+        />
+      </q-list>
+    </q-drawer>
+  </div>
 </template>
 
 <script>

@@ -52,7 +52,24 @@ const routes = [
       },
     ],
   },
-
+  {
+    path: "/admin/",
+    component: () => import("../layouts/AdminLayout.vue"),
+    children: [
+      {
+        path: "annonces-recyclage",
+        component: () => import("pages/AdminAnnoncesRecyclage.vue"),
+      },
+      {
+        path: "annonces-reconditionnement",
+        component: () => import("pages/AdminAnnoncesReconditionnement.vue"),
+      },
+      {
+        path: "utilisateur",
+        component: () => import("pages/AdminUsers.vue"),
+      },
+    ],
+  },
   // Always leave this as last one,
   // but you can also remove it
   {

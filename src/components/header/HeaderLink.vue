@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'HeaderLink',
+  name: "HeaderLink",
   props: {
     to: String,
     label: String,
