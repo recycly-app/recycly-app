@@ -59,7 +59,7 @@ const linksList = [
     separator: false,
   },
   {
-    title: "Reconditionnement ",
+    title: "Reconditionnement/Récupération ",
     icon: "construction",
     link: "/reconditionnement",
     separator: false,

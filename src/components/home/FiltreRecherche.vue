@@ -15,7 +15,6 @@
       v-model="type"
       class="col"
       @send-value="setType"
-      defaultValue="Reconditionnement"
     />
     <SelectInput
       icon="list"

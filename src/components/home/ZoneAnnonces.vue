@@ -10,10 +10,18 @@
         narrow-indicator
         active-bg-color="orange-1"
       >
-        <q-tab name="recyclage" label="Recyclage" class="text-primary" />
+        <q-tab
+          name="recyclage"
+          label="Recyclage"
+          class="text-primary"
+          v-if="
+            store.type_user == 'Transporteur' ||
+            store.type_user == 'Entreprise de recyclage/reconditionnement'
+          "
+        />
         <q-tab
           name="reconditionnement"
-          label="Reconditionnement"
+          label="Reconditionnement/Récupération"
           class="text-secondary"
         />
       </q-tabs>
@@ -21,7 +29,13 @@
       <q-separator />
 
       <q-tab-panels v-model="tab" animated>
-        <q-tab-panel name="recyclage">
+        <q-tab-panel
+          name="recyclage"
+          v-if="
+            store.type_user == 'Transporteur' ||
+            store.type_user == 'Entreprise de recyclage/reconditionnement'
+          "
+        >
           <DernieresAnnonces type="Recyclage" />
         </q-tab-panel>
 
@@ -36,11 +50,13 @@
 <script>
 import { ref } from "vue";
 import DernieresAnnonces from "../annonce/DernieresAnnonces.vue";
+import { store } from "src/layouts/MainLayout.vue";
 export default {
   components: { DernieresAnnonces },
   setup() {
     return {
-      tab: ref("recyclage"),
+      tab: ref("reconditionnement"),
+      store,
     };
   },
 };

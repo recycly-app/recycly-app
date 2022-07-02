@@ -1,6 +1,6 @@
 <template>
-  <q-card id="mapContainer" class="basemap"></q-card>
-  <!-- <div id="instructions" class=""></div> -->
+  <div id="mapContainer" class="basemap"></div>
+  <div id="instructions" class=""></div>
 </template>
 
 <script>
@@ -80,16 +80,16 @@ export default {
 
           // add turn instructions here at the end
           // get the sidebar and add the instructions
-          // const instructions = document.getElementById("instructions");
-          // const steps = data.legs[0].steps;
+          const instructions = document.getElementById("instructions");
+          const steps = data.legs[0].steps;
 
-          // let tripInstructions = "";
-          // for (const step of steps) {
-          //   tripInstructions += `<li>${step.maneuver.instruction}</li>`;
-          // }
-          // instructions.innerHTML = `<p><strong>Durée du trajet: ${Math.floor(
-          //   data.duration / 60
-          // )} min 🚗 </strong></p><ol>${tripInstructions}</ol>`;
+          let tripInstructions = "";
+          for (const step of steps) {
+            tripInstructions += `<li>${step.maneuver.instruction}</li>`;
+          }
+          instructions.innerHTML = `<p><strong>Durée du trajet: ${Math.floor(
+            data.duration / 60
+          )} min 🚗 </strong></p><ol>${tripInstructions}</ol>`;
         }
 
         map.on("load", () => {

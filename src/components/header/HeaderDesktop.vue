@@ -14,7 +14,10 @@
             </router-link>
             <HeaderLink to="/" label="Accueil" />
             <HeaderLink to="/recyclage" label="Recyclage" />
-            <HeaderLink to="/reconditionnement" label="Reconditionnement" />
+            <HeaderLink
+              to="/reconditionnement"
+              label="Reconditionnement/Récupération"
+            />
             <HeaderLink to="/deposer-annonce" label="Déposer Annonce" />
           </div>
 

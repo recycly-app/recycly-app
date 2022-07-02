@@ -5,6 +5,11 @@
 
     <q-page-container>
       <router-view />
+      <!-- <q-footer reveal elevated>
+        <q-toolbar>
+          <q-toolbar-title>Recycly</q-toolbar-title>
+        </q-toolbar>
+      </q-footer> -->
     </q-page-container>
   </q-layout>
 </template>
