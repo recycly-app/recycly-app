@@ -8,11 +8,11 @@
       </q-item-section>
 
       <q-item-section top>
-        <q-item-label lines="1">
-          <div class="q-mt-sm" style="font-size: 16px">
+        <q-item-label>
+          <div class="text-bold" style="font-size: 16px">
             {{ reserveur.prenom }} {{ reserveur.nom }}
           </div>
-          <div class="text-grey-8">a réserver votre annonce</div>
+          <div class="text-grey-8">a réservé votre annonce</div>
           <span class="text-weight-medium">{{ annonce.titre }}</span>
         </q-item-label>
 
@@ -31,6 +31,14 @@
 
       <q-item-section top side>
         <div>
+          <span
+            :class="
+              annonce.status == 'accepter'
+                ? 'text-bold q-mr-sm text-green'
+                : 'text-bold q-mr-sm text-red'
+            "
+            >{{ annonce.status }}</span
+          >
           <q-btn
             size="12px"
             color="secondary"
@@ -38,6 +46,17 @@
             class="q-mr-sm"
             label="Répondre"
             @click="showDialogRepondre()"
+            v-if="annonce.status == ''"
+          />
+
+          <q-btn
+            size="12px"
+            color="green"
+            dense
+            class="q-mr-sm"
+            label="Motifier la réponse"
+            @click="showDialogRepondre()"
+            v-else
           />
         </div>
       </q-item-section>

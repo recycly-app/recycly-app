@@ -42,6 +42,7 @@
 import axios from "axios";
 import { ref } from "vue";
 import { apiUrl } from "../../constants/constants";
+import { useQuasar } from "quasar";
 
 export default {
   props: {
@@ -53,6 +54,8 @@ export default {
   setup(props) {
     const showMotifRefus = ref(false);
     const motifRefus = ref("");
+    const $q = useQuasar();
+
     function showDialogMotifRefus() {
       showMotifRefus.value = true;
     }
@@ -69,7 +72,13 @@ export default {
               props.annonce.id_reservation +
               "/accepter"
           )
-          .then()
+          .then(() => {
+            $q.dialog({
+              title: "Vous avez accepté la réservation",
+            }).onOk(() => {
+              window.location.reload();
+            });
+          })
           .catch((err) => console.log(err));
 
         axios
@@ -102,7 +111,9 @@ export default {
             idReservation: props.annonce.id_reservation,
             date_heure: new Date(),
           })
-          .then((res) => {})
+          .then((res) => {
+            window.location.reload();
+          })
           .catch((err) => console.log(err));
       },
     };

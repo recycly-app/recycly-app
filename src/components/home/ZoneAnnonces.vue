@@ -11,6 +11,11 @@
         active-bg-color="orange-1"
       >
         <q-tab
+          name="reconditionnement"
+          label="Reconditionnement/Récupération"
+          class="text-secondary"
+        />
+        <q-tab
           name="recyclage"
           label="Recyclage"
           class="text-primary"
@@ -19,16 +24,14 @@
             store.type_user == 'Entreprise de recyclage/reconditionnement'
           "
         />
-        <q-tab
-          name="reconditionnement"
-          label="Reconditionnement/Récupération"
-          class="text-secondary"
-        />
       </q-tabs>
 
       <q-separator />
 
       <q-tab-panels v-model="tab" animated>
+        <q-tab-panel name="reconditionnement">
+          <DernieresAnnonces type="Reconditionnement" />
+        </q-tab-panel>
         <q-tab-panel
           name="recyclage"
           v-if="
@@ -37,10 +40,6 @@
           "
         >
           <DernieresAnnonces type="Recyclage" />
-        </q-tab-panel>
-
-        <q-tab-panel name="reconditionnement">
-          <DernieresAnnonces type="Reconditionnement" />
         </q-tab-panel>
       </q-tab-panels>
     </q-card>

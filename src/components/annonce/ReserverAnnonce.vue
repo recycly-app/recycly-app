@@ -119,15 +119,19 @@ export default {
     const date = ref(
       today.getFullYear() + "/0" + today.getMonth() + "/" + today.getDate()
     );
+    const check = ref(true);
     return {
       commentaire,
       quantite,
-      check: ref(true),
+      check,
       step: ref(1),
       date,
       time,
 
       onSubmit() {
+        if (check.value) {
+          quantite.value = "Tout";
+        }
         axios
           .post(apiUrl + "/annonce/" + props.type + "/addReserver", {
             idAnnonce: props.id,
@@ -143,7 +147,9 @@ export default {
               title: "Réservation enregistrée",
               message: "L'annonceur vous recontactera",
             })
-              .onOk(() => {})
+              .onOk(() => {
+                window.location.reload();
+              })
               .onCancel(() => {})
               .onDismiss(() => {});
           })
