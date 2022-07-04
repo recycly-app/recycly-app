@@ -61,6 +61,7 @@ import axios from "axios";
 import { apiUrl } from "src/constants/constants";
 import MoreInfo from "./MoreInfo.vue";
 import ModifierAnnonce from "./ModifierAnnonce.vue";
+import { useQuasar } from "quasar";
 
 export default {
   name: "MesAnnonces",
@@ -69,23 +70,12 @@ export default {
     annonce: Object,
     type: String,
   },
-  methods: {
-    deleteAnnonce() {
-      axios
-        .delete(apiUrl + "/annonce/Recyclage/delete/" + this.annonce.id_annonce)
-        .then((res) => {
-          location.reload();
-        })
-        .catch((err) => {
-          console.log("Erreur supprimer annonce" + err);
-        });
-    },
-  },
 
   setup(props) {
     let showMoreInfo = ref(false);
     let showEdit = ref(false);
     let annonceur = ref({});
+    const $q = useQuasar();
     return {
       showMoreInfo,
       showEdit,
@@ -94,7 +84,33 @@ export default {
       showDialogEdit() {
         showEdit.value = true;
       },
+      deleteAnnonce() {
+        $q.dialog({
+          title: "Voulez vous vraiment supprimer cette annonce?",
+          message: "",
+          cancel: true,
+          persistent: true,
+        })
+          .onOk(() => {
+            axios
+              .delete(
+                apiUrl + "/annonce/Recyclage/delete/" + this.annonce.id_annonce
+              )
+              .then((res) => {
+                location.reload();
+              })
+              .catch((err) => {
+                console.log("Erreur supprimer annonce" + err);
+              });
+          })
 
+          .onCancel(() => {
+            // console.log('>>>> Cancel')
+          })
+          .onDismiss(() => {
+            // console.log('I am triggered on both OK and Cancel')
+          });
+      },
       async showDialogMoreInfo() {
         showMoreInfo.value = true;
         await axios
