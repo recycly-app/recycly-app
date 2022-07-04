@@ -8,7 +8,7 @@
               label="Profil"
               icon="person"
               size="1.5em"
-              color="grey-6"
+              color="deep-orange-6"
             />
           </router-link>
           <router-link to="/mes-annonces" class="item-menu">
@@ -16,7 +16,7 @@
               label="Mes annonces"
               icon="campaign"
               size="1.5em"
-              color="grey-6"
+              color="deep-orange-6"
             />
           </router-link>
           <router-link to="/messagerie" class="item-menu">
@@ -24,7 +24,7 @@
               label="Mes messages"
               icon="message"
               size="1.5em"
-              color="grey-6"
+              color="deep-orange-6"
             />
           </router-link>
           <router-link to="/mes-reservation" class="item-menu">
@@ -32,7 +32,7 @@
               label="Mes réservations"
               icon="handshake"
               size="1.5em"
-              color="grey-6"
+              color="deep-orange-6"
             />
           </router-link>
           <router-link to="/notifications" class="item-menu">
@@ -40,7 +40,7 @@
               label="Notifications"
               icon="notifications"
               size="1.5em"
-              color="grey-6"
+              color="deep-orange-6"
             />
           </router-link>
         </div>

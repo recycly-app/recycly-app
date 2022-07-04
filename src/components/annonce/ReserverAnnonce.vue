@@ -145,7 +145,7 @@ export default {
             // afficher la dialog
             $q.dialog({
               title: "Réservation enregistrée",
-              message: "L'annonceur vous recontactera",
+              message: "Veillez attendre l'acceptation de l'annonceur",
             })
               .onOk(() => {
                 window.location.reload();

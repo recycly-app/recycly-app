@@ -72,7 +72,7 @@ export default {
   methods: {
     deleteAnnonce() {
       axios
-        .delete(apiUrl + "/annonce/" + this.type + "/delete/" + this.id)
+        .delete(apiUrl + "/annonce/Recyclage/delete/" + this.annonce.id_annonce)
         .then((res) => {
           location.reload();
         })

@@ -21,7 +21,8 @@
           class="text-primary"
           v-if="
             store.type_user == 'Transporteur' ||
-            store.type_user == 'Entreprise de recyclage/reconditionnement'
+            store.type_user == 'Entreprise de recyclage/reconditionnement' ||
+            store.type_user == null
           "
         />
       </q-tabs>
@@ -36,7 +37,8 @@
           name="recyclage"
           v-if="
             store.type_user == 'Transporteur' ||
-            store.type_user == 'Entreprise de recyclage/reconditionnement'
+            store.type_user == 'Entreprise de recyclage/reconditionnement' ||
+            store.type_user == null
           "
         >
           <DernieresAnnonces type="Recyclage" />

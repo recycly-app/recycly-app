@@ -46,15 +46,36 @@
       </div>
       <q-separator />
       <q-card-actions align="right">
-        <q-btn flat icon="chat" label="Contacter" v-if="!own" />
-        <q-btn flat label="Réserver" v-if="!own" />
+        <q-btn
+          flat
+          icon="chat"
+          label="Contacter"
+          v-if="!own"
+          @click="goToMessage()"
+        />
+        <q-btn
+          flat
+          label="Réserver"
+          v-if="!own"
+          @click="showDialogReserver()"
+        />
         <q-btn flat label="Fermer" color="secondary" v-close-popup />
       </q-card-actions>
     </q-card>
     <!-- ------------------------------------------Dialogue Map --------------------------------------------->
     <q-dialog v-model="showMap">
-      <MapLocalisation :coords="annonce.lieu_recuperation"
-    /></q-dialog>
+      <MapLocalisation :coords="annonce.lieu_recuperation" />
+    </q-dialog>
+
+    <!-- ------------------------------------------Dialogue Réserver --------------------------------------------->
+    <q-dialog v-model="showReserver">
+      <ReserverAnnonce :type="annonce.type" :id="annonce.id_annonce" />
+    </q-dialog>
+
+    <!-- ------------------------------------------Dialogue conncetez vous --------------------------------------------->
+    <q-dialog v-model="showConnectezVous">
+      <ConnectezVous />
+    </q-dialog>
   </div>
 </template>
 
@@ -63,15 +84,18 @@ import { apiUrl } from "src/constants/constants";
 import { ref } from "vue";
 import InfoAnnonceur from "./InfoAnnonceur.vue";
 import MapLocalisation from "../map/MapLocalisation.vue";
+import { store } from "src/layouts/MainLayout.vue";
+import axios from "axios";
+import ReserverAnnonce from "./ReserverAnnonce.vue";
 export default {
   name: "MoreInfo",
   components: {
     InfoAnnonceur,
     InfoAnnonceur,
     MapLocalisation,
+    ReserverAnnonce,
   },
   props: {
-    // type: String,
     annonce: Object,
     annonceur: Object,
     own: Boolean,
@@ -81,12 +105,40 @@ export default {
       apiUrl,
     };
   },
-  setup() {
+  setup(props) {
     let showMap = ref(false);
+    let showReserver = ref(false);
+    let showConnectezVous = ref(false);
+
     return {
       showMap,
+      showReserver,
+      showConnectezVous,
       showDialogMap() {
         showMap.value = true;
+      },
+      showDialogReserver() {
+        if (store.id_user == undefined) {
+          showDialogConnectezVous();
+        } else {
+          showReserver.value = true;
+        }
+      },
+      async goToMessage() {
+        if (store.id_user == undefined) {
+          showDialogConnectezVous();
+        } else {
+          axios
+            .post(apiUrl + "/message/addContact", {
+              id_user: store.id_user,
+              id_contact: props.annonce.id_annonceur,
+            })
+            .then((res) => {
+              console.log(res.data.message);
+            })
+            .catch((err) => console.log("erreur add contact" + err));
+          location.href = `/#/messagerie/${props.annonceur.id_user}`;
+        }
       },
     };
   },
