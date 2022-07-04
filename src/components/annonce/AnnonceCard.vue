@@ -126,6 +126,15 @@ export default {
           showDialogConnectezVous();
         } else {
           await getAnnonceur();
+          axios
+            .post(apiUrl + "/message/addContact", {
+              id_user: store.id_user,
+              id_contact: props.annonce.id_annonceur,
+            })
+            .then((res) => {
+              console.log(res.data.message);
+            })
+            .catch((err) => console.log("erreur add contact" + err));
           location.href = `/#/messagerie/${annonceur.value.id_user}`;
         }
       },
