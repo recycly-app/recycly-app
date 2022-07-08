@@ -1,6 +1,6 @@
 <template>
   <div class="menu">
-    <q-btn rounded color="secondary" icon="more_vert">
+    <q-btn flat rounded color="secondary" icon="more_vert">
       <q-menu>
         <q-list style="min-width: 100px">
           <q-item clickable v-close-popup>

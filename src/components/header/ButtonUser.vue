@@ -1,6 +1,7 @@
 <template>
   <div class="btn-user row justify-end">
     <!-- user connecter -->
+
     <ButtonUserLogged v-if="isLogged" />
 
     <!-- Pas connceter -->

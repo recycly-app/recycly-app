@@ -1,6 +1,6 @@
 <template>
   <div id="mapContainer" class="basemap"></div>
-  <div id="instructions" class=""></div>
+  <!-- <div id="instructions" class=""></div> -->
 </template>
 
 <script>

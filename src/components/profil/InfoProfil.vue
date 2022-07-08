@@ -17,8 +17,18 @@
     </div>
     <div class="coordonnees">
       <div id="coordonnees">Coordonnées</div>
-      <div><span>Téléphone : </span>{{ store.tel_user }}</div>
-      <div><span>E-mail : </span>{{ store.email_user }}</div>
+      <div>
+        <q-icon name="phone" size="25px" color="secondary" class="q-pa-sm" />
+        <span>Téléphone : </span>{{ store.tel_user }}
+      </div>
+      <div>
+        <q-icon
+          name="mail"
+          size="25px"
+          color="secondary"
+          class="q-pa-sm"
+        /><span>E-mail : </span>{{ store.email_user }}
+      </div>
     </div>
   </div>
 </template>

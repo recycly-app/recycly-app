@@ -1,6 +1,12 @@
 <template>
   <div class="q-pa-sm">
-    <q-btn-dropdown rounded dense color="secondary" icon="person">
+    <q-btn-dropdown
+      text-color="secondary"
+      color="white"
+      rounded
+      dense
+      icon="person"
+    >
       <div class="row no-wrap q-pa-md">
         <div class="column">
           <router-link to="/profil" class="item-menu">
@@ -8,7 +14,7 @@
               label="Profil"
               icon="person"
               size="1.5em"
-              color="deep-orange-6"
+              color="blue"
             />
           </router-link>
           <router-link to="/mes-annonces" class="item-menu">
@@ -16,7 +22,7 @@
               label="Mes annonces"
               icon="campaign"
               size="1.5em"
-              color="deep-orange-6"
+              color="blue"
             />
           </router-link>
           <router-link to="/messagerie" class="item-menu">
@@ -24,7 +30,8 @@
               label="Mes messages"
               icon="message"
               size="1.5em"
-              color="deep-orange-6"
+              color="blue"
+              :badge="0"
             />
           </router-link>
           <router-link to="/mes-reservation" class="item-menu">
@@ -32,7 +39,8 @@
               label="Mes réservations"
               icon="handshake"
               size="1.5em"
-              color="deep-orange-6"
+              color="blue"
+              :badge="nombreReservationNonLus"
             />
           </router-link>
           <router-link to="/notifications" class="item-menu">
@@ -40,7 +48,8 @@
               label="Notifications"
               icon="notifications"
               size="1.5em"
-              color="deep-orange-6"
+              color="blue"
+              :badge="0"
             />
           </router-link>
         </div>
@@ -65,12 +74,23 @@
         </div>
       </div>
     </q-btn-dropdown>
+    <q-badge
+      color="red"
+      floating
+      style="right: 45px; top: 2px"
+      rounded
+      v-if="nombreReservationNonLus"
+    >
+      <q-icon name="notifications" />
+    </q-badge>
   </div>
 </template>
 
 <script>
 import SimpleButton from "../button/SimpleButton.vue";
 import { store } from "src/layouts/MainLayout.vue";
+import axios from "axios";
+import { apiUrl } from "src/constants/constants";
 
 export default {
   name: "ButtonUserLogged",
@@ -92,7 +112,20 @@ export default {
   data() {
     return {
       store,
+      nombreReservationNonLus: 0,
     };
+  },
+  mounted() {
+    axios
+      .get(
+        apiUrl +
+          "/annonce/Recyclage/getNombreReservationNonLus/" +
+          store.id_user
+      )
+      .then((res) => {
+        this.nombreReservationNonLus = res.data[0].nombreReservationNonLus;
+      })
+      .catch((err) => console.log(err));
   },
 };
 </script>

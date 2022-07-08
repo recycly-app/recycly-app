@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="">
     <q-avatar
       size="120px"
       color="primary"
@@ -8,15 +8,6 @@
     >
       {{ prenom[0] }} {{ nom[0] }}
     </q-avatar>
-
-    <q-btn
-      round
-      dense
-      color="secondary"
-      size="10px"
-      icon="edit"
-      class="edit-avatar"
-    />
   </div>
 </template>
 

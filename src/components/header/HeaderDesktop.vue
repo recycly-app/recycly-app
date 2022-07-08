@@ -41,7 +41,6 @@ import { store } from "src/layouts/MainLayout.vue";
 export default {
   name: "HeaderDesktop",
   components: {
-    // SearchInput,
     ButtonUser,
     HeaderLink,
   },

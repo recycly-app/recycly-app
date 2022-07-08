@@ -70,6 +70,10 @@
               v-if="type == 'Recyclage'"
             />
           </div>
+          <div class="row" v-if="type == 'Reconditionnement'">
+            <TextInput icon="payments" label="Etat" />
+            <TextInput type="text" label="Etat" />
+          </div>
           <q-stepper-navigation>
             <q-btn @click="step = 3" color="primary" label="Continuer" />
             <q-btn

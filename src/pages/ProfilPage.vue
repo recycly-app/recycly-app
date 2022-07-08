@@ -38,6 +38,7 @@ export default {
   margin-right: auto;
   margin-top: 20px;
   text-align: center;
+  padding: 20px;
 }
 
 @media screen and (min-width: 768px) {
