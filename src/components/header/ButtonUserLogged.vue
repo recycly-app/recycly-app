@@ -49,7 +49,7 @@
               icon="notifications"
               size="1.5em"
               color="blue"
-              :badge="0"
+              :badge="nombreNotificationNonLus"
             />
           </router-link>
         </div>
@@ -79,7 +79,7 @@
       floating
       style="right: 45px; top: 2px"
       rounded
-      v-if="nombreReservationNonLus"
+      v-if="nombreReservationNonLus || nombreNotificationNonLus"
     >
       <q-icon name="notifications" />
     </q-badge>
@@ -113,6 +113,7 @@ export default {
     return {
       store,
       nombreReservationNonLus: 0,
+      nombreNotificationNonLus: 0,
     };
   },
   mounted() {
@@ -124,6 +125,17 @@ export default {
       )
       .then((res) => {
         this.nombreReservationNonLus = res.data[0].nombreReservationNonLus;
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get(
+        apiUrl +
+          "/annonce/Recyclage/getNombreNotificationNonLus/" +
+          store.id_user
+      )
+      .then((res) => {
+        this.nombreNotificationNonLus = res.data[0].nombreNotificationNonLus;
       })
       .catch((err) => console.log(err));
   },

@@ -6,6 +6,7 @@
       :key="index"
       :notification="notification"
     />
+    <!-- {{ notifications }} -->
   </div>
 </template>
 
@@ -30,6 +31,16 @@ export default {
       .then((res) => {
         this.notifications = res.data;
       })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios
+      .put(
+        apiUrl +
+          "/annonce/Recyclage/updateNotificationLus/" +
+          this.store.id_user
+      )
+      .then((res) => {})
       .catch((err) => {
         console.log(err);
       });
